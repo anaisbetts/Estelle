@@ -31,13 +31,14 @@ include GetText
 
 DefaultTaggerPath = File.join(File.dirname(__FILE__), 'taggers')
 class MusicLibrary < Logger::Application
-	protected	
 	@taggers = nil
 	@tag_info = nil
-	@is_soundtrack = nil
 	@album_info = nil
 
+
 	public 
+	attr_writer :is_soundtrack
+
 	def initialize
 		super(self.class.to_s()) 
 		self.level = $logging_level
@@ -60,7 +61,7 @@ class MusicLibrary < Logger::Application
 			@taggers.each { |x| break if (loader = x).get_tags? current }
 			next unless loader
 
-			yield (count.to_f / files.size) if block_given? and (count % yield_every) == 0
+			yield(count.to_f / files.size) if (block_given? and (count % yield_every) == 0)
 
 			if (@tag_info[current] = loader.song_info(current))
 				@tag_info[current][:path] = current
@@ -76,7 +77,7 @@ class MusicLibrary < Logger::Application
 	end
 
 	def find_soundtracks
-		@is_soundtrack = {}
+		@is_soundtrack ||= {}
 		log DEBUG, "Entering find_soundtracks"
 
 		build_tables unless @album_info
@@ -84,6 +85,7 @@ class MusicLibrary < Logger::Application
 			artists = {}
 			current = @album_info[curname]
 
+			next if @is_soundtrack[curname]
 			current.each { |track| artists[track[:canonical_artist]] ||= 0; artists[track[:canonical_artist]] += 1; }
 			histogram = artists.sort { |a,b| a[1] <=> b[1] }	# Sort by value
 			#log DEBUG, "#{curname} - #{histogram.size} artists, leader has #{histogram[0][1]}"
@@ -109,13 +111,13 @@ class MusicLibrary < Logger::Application
 		@tag_info.values.each do |current|
 			if @is_soundtrack[ current[:album] ] != true
 				data = music_tags.collect do |x| 
-					current.checked_tag (x, InvalidChars, lambda { |y,z| yield y,InvalidCharsString })
+					current.checked_tag(x, InvalidChars, lambda { |y,z| yield y,InvalidCharsString })
 				end
 				dest = File.join(target_root, 
 						 music_fstr % data)
 			else
 				data = sndtrk_tags.collect do |x| 
-					current.checked_tag (x, InvalidChars, lambda { |y,z| yield y,InvalidCharsString })
+					current.checked_tag(x, InvalidChars, lambda { |y,z| yield y,InvalidCharsString })
 				end
 				dest = File.join(target_root, 
 						 sndtrk_fstr % data)

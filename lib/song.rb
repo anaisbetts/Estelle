@@ -30,7 +30,6 @@ FeaturingList = ['Featuring', 'Feat.', 'featuring', 'feat.', 'FEATURING', 'FEAT.
 class Song 
 	def initialize
 		@data = {} 
-		@@sub_table ||= {}
 	end
 
 	def get_canonical_artist
@@ -81,6 +80,7 @@ class Song
 	end
 
 	def checked_tag(key, invalid_chars, checking_proc)
+		@@sub_table ||= {}
 		data = @data[key] || "<#{key}>"		# Write the original key back
 
 		# Switch out the data with a replacement if we've got one
@@ -98,8 +98,8 @@ class Song
 		repl
 	end
 
-	def sub_table; @@sub_table end
-	def sub_table=(val); @@sub_table=val end
+	def Song.sub_table; @@sub_table end
+	def Song.sub_table=(val); @@sub_table=val end
 	
 	def to_hash; @data.clone end
 	def to_s; @data.to_s end

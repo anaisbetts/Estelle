@@ -18,59 +18,29 @@
 #   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
 ###########################################################################
 
-$:.unshift File.join(File.dirname(__FILE__))
-
 # Ruby standard library
 require 'logger'
 require 'gettext'
-require 'pathname'
-require 'singleton'
-
-# Estelle 
-require 'song'
-require 'libtagruby'
+require 'thread'
+require 'monitor'
 
 include GetText
-include Libtagruby
 
-class TagLibTagger < Logger::Application
-	include Singleton
+class TaskQueue < Queue
+	private_class_method pop 
+	private_class_method pop 
 
-	def initialize
-		super(self.class.to_s) 
-		self.level = $logging_level 
+	def clear(stop_current)
+		Queue::clear
+		return unless (stop_current or @worker == Thread.current)
+		@worker.stop
 	end
 
-	def get_tags?(path)
-		@allowed ||= FileRef.defaultFileExtensions.toString.to_s.split ' '
-		return @allowed.include?(Pathname.new(path).extname.slice(1,10))
-	end
-
-	# Estelle::Song name => Taglib::Tag name
-	TaglibMapping = { :album => 'album', :artist => 'artist', :genre => 'genre',
-			  :title => 'title', :track => 'track', :year => 'year' }
-	ApMapping = { :bitrate => 'bitrate', :channels => 'channels', 
-		      :length => 'length', :samplerate => 'sampleRate' }
-
-	def song_info(path)
-		#log DEBUG, "Loading info for #{path.to_s}"
-		f = FileRef.new(path.to_s)
-		if f.isNull
-			#log DEBUG, "Couldn't read #{path.to_s}"
-			return nil
+	def start
+		@worker ||= Thread.new do
+			while not @quit do
+				
+			end
 		end
-
-		t = f.tag; s = Song.new; a = f.audioProperties
-		#log DEBUG, "Artist is #{t.artist.to_s}"
-		s[:path] = path
-		TaglibMapping.keys.each do |key|
-			s[key] = (t.send(TaglibMapping[key]).to_s)
-		end
-		ApMapping.keys.each do |key|
-			s[key] = (a.send(ApMapping[key]).to_s)
-		end
-
-		#log DEBUG, s.to_s; 
-		s
 	end
 end

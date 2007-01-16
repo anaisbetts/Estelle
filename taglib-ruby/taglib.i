@@ -1,4 +1,4 @@
-%module taglib 
+%module libtagruby 
 %{
 #include "taglib.h"
 #include "tlist.h"

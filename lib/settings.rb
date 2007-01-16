@@ -18,59 +18,35 @@
 #   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
 ###########################################################################
 
-$:.unshift File.join(File.dirname(__FILE__))
-
-# Ruby standard library
+# Standard library
 require 'logger'
 require 'gettext'
-require 'pathname'
+require 'optparse'
+require 'optparse/time'
 require 'singleton'
-
-# Estelle 
-require 'song'
-require 'libtagruby'
+require 'yaml'
 
 include GetText
-include Libtagruby
 
-class TagLibTagger < Logger::Application
-	include Singleton
+class EstelleSettings
+	public
+	attr :soundtrack_table
+	attr :tagsubst_table
 
 	def initialize
-		super(self.class.to_s) 
-		self.level = $logging_level 
+		@soundtrack_table = {}
+		@tagsubst_table = {}
 	end
 
-	def get_tags?(path)
-		@allowed ||= FileRef.defaultFileExtensions.toString.to_s.split ' '
-		return @allowed.include?(Pathname.new(path).extname.slice(1,10))
-	end
-
-	# Estelle::Song name => Taglib::Tag name
-	TaglibMapping = { :album => 'album', :artist => 'artist', :genre => 'genre',
-			  :title => 'title', :track => 'track', :year => 'year' }
-	ApMapping = { :bitrate => 'bitrate', :channels => 'channels', 
-		      :length => 'length', :samplerate => 'sampleRate' }
-
-	def song_info(path)
-		#log DEBUG, "Loading info for #{path.to_s}"
-		f = FileRef.new(path.to_s)
-		if f.isNull
-			#log DEBUG, "Couldn't read #{path.to_s}"
+	def EstelleSettings::load(path)
+		begin
+			YAML::load(File.read(path))
+		rescue
 			return nil
 		end
+	end
 
-		t = f.tag; s = Song.new; a = f.audioProperties
-		#log DEBUG, "Artist is #{t.artist.to_s}"
-		s[:path] = path
-		TaglibMapping.keys.each do |key|
-			s[key] = (t.send(TaglibMapping[key]).to_s)
-		end
-		ApMapping.keys.each do |key|
-			s[key] = (a.send(ApMapping[key]).to_s)
-		end
-
-		#log DEBUG, s.to_s; 
-		s
+	def save(path)
+		File.open(path, "w") { |file| file.write(YAML::dump(self)) }
 	end
 end

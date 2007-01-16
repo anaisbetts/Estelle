@@ -1,0 +1,5 @@
+lib/gtk-ui/EntryDialog.glade
+lib/gtk-ui/MainWindow.glade
+lib/library.rb
+lib/main.rb
+lib/song.rb

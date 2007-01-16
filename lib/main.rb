@@ -18,17 +18,28 @@
 #   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
 ###########################################################################
 
+$:.unshift File.join(File.dirname(__FILE__))
+
+# Standard library
 require 'logger'
 require 'gettext'
-require 'library'
 require 'optparse'
 require 'optparse/time'
 
+# Estelle
+require 'library'
+require 'settings'
+require 'platform'
+require 'song'
+require 'config'
+
 include GetText
 
-$logging_level = Logger::ERROR
+$logging_level = ($DEBUG ? Logger::DEBUG : Logger::ERROR)
 
 class Estelle < Logger::Application
+	include Singleton
+
 	def initialize
 		super(self.class.to_s) 
 		self.level = $logging_level
@@ -39,7 +50,7 @@ class Estelle < Logger::Application
 		# Set the defaults here
 		results = { :target => '.', 
 			    :musicformat => "<artist>/<album>/<track> - <title>.<ext>",
-			    :sndtrkformat => _("Soundtracks/<album>/<track> - <title> (<artist>).<ext>"),
+			    :sndtrkformat => s_("Only translate the word 'Soundtracks'|Soundtracks/<album>/<track> - <title> (<artist>).<ext>"),
 			    :action => :copy, :script => ''
 			  }
 
@@ -82,6 +93,10 @@ class Estelle < Logger::Application
 				results[:target] = x
 			end
 
+			opts.on('-g', '--gui', _("Run the GUI version of this application")) do |x|
+				results[:rungui] = true
+			end
+
 			opts.separator ""
 			opts.separator _("Common options:")
 
@@ -116,6 +131,16 @@ class Estelle < Logger::Application
 	end
 
 	def run
+		# Initialize Gettext (root, domain, locale dir, encoding) and set up logging
+    		bindtextdomain(Config::Package, nil, nil, "UTF-8")
+		self.level = Logger::DEBUG
+		
+		# If we're called with no arguments, run the GUI version
+		if ARGV.size == 0
+			run_gui
+			exit
+		end
+
 		# Parse arguments
 		begin
 			results = parse(ARGV)
@@ -127,8 +152,15 @@ class Estelle < Logger::Application
 			exit
 		end
 
+		# Reset our logging level because option parsing changed it
 		self.level = $logging_level
+
+		# Run the GUI if requested
 		log DEBUG, 'Starting application'
+		if results[:rungui]
+			run_gui
+			exit
+		end
 
 		# Figure out a list of files to load
 		file_list = []
@@ -139,9 +171,20 @@ class Estelle < Logger::Application
 		if file_list.size == 0
 			file_list = ARGV
 		end
+		if file_list.size == 0
+			log DEBUG, 'No files, starting GUI...'
+			run_gui
+			exit
+		end
+
+		library = MusicLibrary.new
+
+		# Load our settings
+		@settings = EstelleSettings.load(Platform.settings_file_path) || EstelleSettings.new
+		Song.sub_table = @settings.tagsubst_table
+		library.is_soundtrack = @settings.soundtrack_table
 
 		# Process the library
-		library = MusicLibrary.new
 		library.load file_list do |progress|
 			puts _("%s%% complete") % (progress * 100.0)
 		end
@@ -151,7 +194,6 @@ class Estelle < Logger::Application
 			(STDIN.gets =~ /^[Nn]/ ? false : true)
 		end
 
-		log DEBUG, "Just exited!"
 		list = library.create_action_list(results[:target], 
 						  results[:musicformat], 
 						  results[:sndtrkformat]) do |tag, invalid|
@@ -168,10 +210,26 @@ class Estelle < Logger::Application
 					    (results[:script].empty?) ? ExecuteList : ShellScriptList,
 					    results[:script])
 
+		# Save out the settings
+		@settings.save(Platform.settings_file_path)
+
 		log DEBUG, 'Exiting application'
+	end
+
+	def run_gui
+		$:.unshift File.dirname(__FILE__)
+		$:.unshift File.join(File.dirname(__FILE__), 'gtk-ui')
+		require 'libglade2'
+		require 'mainwindow'
+
+		log DEBUG, 'Starting GUI...'
+		Gtk.init
+		Gnome::Program.new(Config::Package, Config::Version)
+		main_window = MainWindow.new
+		Gtk.main
 	end
 end
 
 
-$the_app = Estelle.new
+$the_app = Estelle.instance
 $the_app.run

@@ -1,0 +1,81 @@
+AC_INIT(README)
+AC_CANONICAL_SYSTEM
+AC_PREREQ(2.13)
+AM_INIT_AUTOMAKE(estelle, 0.2)
+AM_MAINTAINER_MODE
+AC_PROG_INSTALL
+AC_PROG_LIBTOOL
+AC_PROG_INTLTOOL([0.21])
+
+AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
+if test "x$PKG_CONFIG" = "xno"; then
+	AC_MSG_ERROR(['pkg-config' is not in your PATH.])
+fi
+
+dnl Gettext stuff
+ALL_LINGUAS="fr"
+GETTEXT_PACKAGE=estelle
+AC_SUBST(GETTEXT_PACKAGE)
+AM_GLIB_GNU_GETTEXT
+
+dnl Do some hacky Ruby checks
+AC_PATH_PROG(RUBY, ruby, no)
+if test "x$RUBY" = "xno"; then
+	AC_MSG_ERROR([Please install Ruby 1.8 or higher])
+fi
+AC_SUBST(RUBY)
+ruby_vergood=`ruby -e 'puts (RUBY_VERSION.to_f >= 1.8 ? "yes" : "no")'`
+if test "x$ruby_vergood" != "xyes"; then
+	AC_MSG_ERROR([Please install Ruby 1.8 or higher])
+fi
+
+RUBY_CFLAGS=`ruby -e 'puts ($:.collect {|x| "-I#{x}" }).join(" ")'`
+AC_SUBST(RUBY_CFLAGS)
+
+dnl Check for taglib
+AC_PATH_PROG(TAGLIB_CONFIG, taglib-config, no)
+if test "x$TAGLIB_CONFIG" = "xno" ; then
+ 	AC_MSG_ERROR(['TagLib is not installed'])
+fi
+TAGLIB_PREFIX=`taglib-config --prefix`
+TAGLIB_CFLAGS=`taglib-config --cflags`
+TAGLIB_LIBS=`taglib-config --libs`
+AC_SUBST(TAGLIB_CFLAGS)
+AC_SUBST(TAGLIB_LIBS)
+
+dnl Find swig
+AC_PATH_PROG(SWIG, swig, no)
+if test "x$SWIG" = "xno"; then
+	AC_MSG_ERROR([Please install Swig])
+fi
+AC_SUBST(SWIG)
+
+dnl Find the real @libdir@
+expanded_libdir=`( case $prefix in NONE) prefix=$ac_default_prefix ;; *) ;; esac
+		   case $exec_prefix in NONE) exec_prefix=$prefix ;; *) ;; esac
+		   eval echo $libdir )`
+AC_SUBST(expanded_libdir)
+expanded_datadir=`( case $prefix in NONE) prefix=$ac_default_prefix ;; *) ;; esac
+		   case $exec_prefix in NONE) exec_prefix=$prefix ;; *) ;; esac
+		   eval echo $datadir )`
+AC_SUBST(expanded_datadir)
+
+AC_OUTPUT([ 
+po/Makefile.in
+estelle
+lib/config.rb
+lib/Makefile
+taglib-ruby/Makefile
+Makefile
+intltool-update
+intltool-merge
+intltool-extract
+])
+
+echo "
+$PACKAGE-$VERSION
+
+	Install Prefix:		${prefix}
+	Ruby: 			${ruby}
+
+Now type \"make\" followed by \"sudo make install\"."

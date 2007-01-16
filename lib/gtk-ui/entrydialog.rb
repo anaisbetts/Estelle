@@ -18,30 +18,22 @@
 #   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
 ###########################################################################
 
-# Ruby standard library
 require 'logger'
 require 'gettext'
-require 'pathname'
+require 'EntryDialog.glade'
+require 'config'
 
-# Estelle 
-require 'platform'
 include GetText
 
-module FormatParser
-	def create_format_string(format_string)
-		# Find the tags used in the string
-		s = format_string.clone
-		tags_used = []
-		while /(<\S*?>)+[^<]*/.match s do
-			tags_used << $1[1..$1.length-2].to_sym
-			s.sub! /(<\S*?>)+[^<]*/, ''
-		end
+class EntryDialog < EntryDialogGenerated
+	def initialize
+		super(File.dirname(__FILE__), true, nil, Config::Package)
+		@prompt = self.get_widget("prompt")
+		@prompt.buffer.set_text("Hoo de dah!")
+	end
 
-		# Sub them in
-		result = format_string.clone
-		tags_used.each do |x|
-			result.gsub x, '%s'
-		end
-		[result, tags_used]
+	def prompt_text(title, primary_text, secondary_text, initial_entry, validator)
+		self.show
+		Gtk.main
 	end
 end

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+prefix=@prefix@
+libdir=@expanded_libdir@
+exec_rb="main.rb"
+
+if [ -e "./lib/$exec_rb" ] && [ -e ./Makefile ] ; then
+	RUBY_SCRIPT="./lib/$exec_rb"
+	export RUBYLIB="./taglib-ruby/.libs"
+
+	echo "*** Warning - Running UNINSTALLED $exec_rb ***"
+else
+	RUBY_SCRIPT="@expanded_libdir@/@PACKAGE@/$exec_rb"
+fi
+
+exec @RUBY@ $RUBY_SCRIPT "$@"
+
+
