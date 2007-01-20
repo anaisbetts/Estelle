@@ -24,16 +24,36 @@ require 'EntryDialog.glade'
 require 'config'
 
 include GetText
+include Gdk
+include Gtk
 
 class EntryDialog < EntryDialogGenerated
 	def initialize
 		super(File.dirname(__FILE__), true, nil, Config::Package)
-		@prompt = self.get_widget("prompt")
-		@prompt.buffer.set_text("Hoo de dah!")
 	end
 
-	def prompt_text(title, primary_text, secondary_text, initial_entry, validator)
-		self.show
-		Gtk.main
+	def prompt_text(title, 
+			primary_text, 
+			secondary_text, 
+			initial_entry = '', 
+			validator = lambda {|x| true })
+		@glade["EntryDialog"].title = title
+		@validator = validator
+		@prompt.markup = "<span size='xx-large'>#{primary_text}</span>\n\n#{secondary_text}"
+		@glade["EntryDialog"].show_all; Gtk.main
+
+		@text
+	end
+
+	def on_ok_released(widget); @text = @entry.text; Gtk.main_quit; end
+	def on_cancel_released(widget); @text = nil; Gtk.main_quit; end
+	def on_dialog_delete_event(widget, arg0); on_cancel_released(widget); end
+
+	def on_entry_key_release_event(widget, key_event)
+		on_ok_released(@ok) if key_event.keyval == Keyval::GDK_Return and @ok.sensitive?
+	end
+
+	def on_entry_changed(widget)
+		@ok.sensitive = @validator.call(@entry.text)
 	end
 end

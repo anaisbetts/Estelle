@@ -19,12 +19,64 @@
 ###########################################################################
 
 require 'logger'
-require 'gettext'
+require 'sync'
 require 'thread'
 
-require 'config'
+class Task
+	def initialize(call, params, do_safe = false)
+		@call = call
+		if do_safe
+			@params = []
+			params.each do |x| 
+				@params << x.clone
+			end
+		else 
+			@params = params
+		end
+	end
 
-include GetText
+	def invoke
+		@call.call @params
+	end
 
-class TaskQueue < Thread::Queue
+	attr_reader :call, :params
+end
+
+
+class TaskQueue < Queue
+	#protected :shift 
+	#protected :deq 
+	#protected :pop 
+
+	public
+	def initialize(yield_every = 0)
+		super()
+		@do_quit = false
+		@pause = false
+		@the_thread = nil 
+		@yield_every = yield_every
+	end
+
+	def start     
+		if @the_thread 
+			@pause = false
+			@the_thread.run if @the_thread.stop?
+			return
+		end
+
+		# Start the thread
+		@the_thread = Thread.new(@yield_every) do |yield_every|
+			count = 0
+			while not @do_quit do
+				Thread.stop if @pause
+				current = self.pop
+				current.invoke
+				count += 1
+				Thread.pass if yield_every > 0 and (count % yield_every == 0)
+			end
+		end
+		@the_thread.run
+	end
+	
+	attr :pause
 end

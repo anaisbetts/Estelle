@@ -79,6 +79,7 @@ glade.signal_autoconnect_full{|source, target, signal_name, handler, data, after
 gnomeapp = nil
 uiinfos = []
 tooltips = []
+objects = []
 doc.elements.each("//widget") do |e|
 	if e.attributes["class"] == "GnomeApp"
 		gnomeapp = e.attributes["id"]
@@ -126,8 +127,8 @@ doc.elements.each("//widget") do |e|
 		end
 	end
 
-	unless is_default_name(e.attributes["id"]) and e.attributes["id"] != filename
-		p e.attributes["id"]
+	unless is_default_name(e.attributes["id"]) or e.attributes["id"] == filename
+		objects << e.attributes["id"]
 	end
 end
 
@@ -180,6 +181,13 @@ if signals.size > 0
 	end
 end
 
+# Creates widget instance variables
+widget_defs = ""
+objects.each do |obj|
+	widget_defs << "\n    @#{obj} = @glade.get_widget(\"#{obj}\")"
+end
+widget_defs << "\n"
+
 #
 # Print template.
 #
@@ -201,6 +209,7 @@ class #{classname}
     pd = File.join(pd, "#{filename}.glade") if add_file_name
     @glade = GladeXML.new(pd, root, domain, localedir, flag) {|handler| method(handler)}
     #{additional_methods}
+    #{widget_defs}
   end
   #{handler_methods}
 end
