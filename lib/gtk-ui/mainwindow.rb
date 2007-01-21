@@ -20,20 +20,33 @@
 
 require 'logger'
 require 'gettext'
+require 'singleton'
 require 'MainWindow.glade'
 require 'config'
 require 'thread'
 require 'utility'
+require 'song'
 
 include GetText
+include Gtk
+include Gdk
 
-class MainWindow < MainWindowGenerated
-	def initialize
-		super(File.dirname(__FILE__), true, nil, Config::Package)
+class SongWrapper < GLib::Object
+	def initialize(song)
+		@obj = song
 	end
 
-	def show_dialog
-		update_dialog
+	attr :obj
+end
+
+class MainWindow < MainWindowGenerated
+	include Singleton
+
+	Icon = 0
+	Text = 1
+	SONG = 2
+	def initialize
+		super(File.dirname(__FILE__), true, nil, Config::Package)
 
 		# Set up a framework to process these long-running tasks while
 		# still keeping the UI available. Basically we create a
@@ -53,8 +66,20 @@ class MainWindow < MainWindowGenerated
 			end
 		end
 
+		# Set up the tree view
+		@fv_store = TreeStore.new( Pixbuf, String, SongWrapper )
+		@file_view.model = @fv_store
+		col = TreeViewColumn.new("Name")
+		col.pack_start( (cp = CellRendererPixbuf.new), false);	col.add_attribute(cp, :pixbuf, Icon)
+		col.pack_start( (ct = CellRendererText.new), true );	col.add_attribute(ct, :text, Text)
+		@file_view.append_column(col)
+	end
+
+	def show_dialog
+		update_dialog
 		@glade["MainWindow"].show_all; Gtk.main
 	end
+
 
 	#####################
 	## Utility functions
@@ -65,15 +90,34 @@ class MainWindow < MainWindowGenerated
 		update_track_info
 		update_file_tree
 		update_progress_bar
+
+		@ok.sensitive = @task_queue.empty?
+		@cancel_action.sensitive = (not @task_queue.empty?)
+		@filechooser_source.sensitive = (not @in_file_operation)
 	end
 
 	def update_track_info
+		markup = "<span size=\"xx-large\">%s</span>" % _("Track Information")
+		unless @cur_track
+			markup += _("\n<i>No Track Selected</i>")
+			return
+		else
+			# TODO: Figure out the track info
+		end
+		@track_information.markup = markup
 	end
 
 	def update_file_tree
+		# TODO: Take the MusicLibrary and rebuild it as a tree
+		unless @music_library
+			@fv_store.clear
+			return
+		end
 	end
 
-	def update_progress_bar
+	def update_progress_bar(text = '', fraction = 0)
+		@progress_bar.text = text
+		@progress_bar.fraction = fraction 
 	end
 
 
@@ -85,7 +129,6 @@ class MainWindow < MainWindowGenerated
 	def window_delete_event(widget, arg0); Gtk.main_quit; end
 
 	def on_filechooser_source_selection_changed(widget)
-		puts "on_filechooser_source_selection_changed() is not implemented yet."
 	end
 
 	def on_ok_released(widget)
