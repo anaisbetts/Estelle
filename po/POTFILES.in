@@ -3,3 +3,4 @@ lib/gtk-ui/MainWindow.glade
 lib/library.rb
 lib/main.rb
 lib/song.rb
+lib/gtk-ui/mainwindow.rb

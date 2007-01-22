@@ -32,6 +32,7 @@ require 'settings'
 require 'platform'
 require 'song'
 require 'config'
+require 'utility'
 
 include GetText
 
@@ -122,14 +123,6 @@ class Estelle < Logger::Application
 		opts.parse!(args);	results
 	end
 
-	def filelist_from_root(path)
-		list = []
-		d = Pathname.new path
-		d.find { |x| list << x.to_s }
-
-		list
-	end
-
 	def run
 		# Initialize Gettext (root, domain, locale dir, encoding) and set up logging
     		bindtextdomain(Config::Package, nil, nil, "UTF-8")
@@ -179,10 +172,7 @@ class Estelle < Logger::Application
 
 		library = MusicLibrary.new
 
-		# Load our settings
-		@settings = EstelleSettings.load(Platform.settings_file_path) || EstelleSettings.new
-		Song.sub_table = @settings.tagsubst_table
-		library.is_soundtrack = @settings.soundtrack_table
+		load_settings(library)
 
 		# Process the library
 		library.load file_list do |progress|

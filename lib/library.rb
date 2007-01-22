@@ -35,7 +35,6 @@ class MusicLibrary < Logger::Application
 	@tag_info = nil
 	@album_info = nil
 
-
 	public 
 	attr_writer :is_soundtrack
 
@@ -43,6 +42,15 @@ class MusicLibrary < Logger::Application
 		super(self.class.to_s()) 
 		self.level = $logging_level
 	end
+
+	def clear
+		@tag_info = nil
+		@album_info = nil
+	end
+
+	def empty?; @tag_info and @tag_info.empty?; end
+
+	def size; (@tag_info ? @tag_info.size : 0); end
 
 	def load(files, progress_rate = 0.05)
 		load_taggers(DefaultTaggerPath) unless @taggers

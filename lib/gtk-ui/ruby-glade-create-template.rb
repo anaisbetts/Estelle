@@ -45,7 +45,7 @@ end
 DefaultNameRegex = /^[a-z]+[0-9]+$/
 def is_default_name(str)
 	return false if str.downcase != str
-	return DefaultNameRegex.match str
+	return DefaultNameRegex.match(str)
 end
 
 #

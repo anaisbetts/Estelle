@@ -22,10 +22,15 @@ require 'logger'
 require 'gettext'
 require 'singleton'
 require 'MainWindow.glade'
-require 'config'
 require 'thread'
-require 'utility'
+
+# Estelle
+require 'library'
+require 'settings'
+require 'platform'
 require 'song'
+require 'config'
+require 'utility'
 
 include GetText
 include Gtk
@@ -40,8 +45,6 @@ class SongWrapper < GLib::Object
 end
 
 class MainWindow < MainWindowGenerated
-	include Singleton
-
 	Icon = 0
 	Text = 1
 	SONG = 2
@@ -56,15 +59,20 @@ class MainWindow < MainWindowGenerated
 		# GTK+ threading issues. A timeout function is created to process
 		# the update_queue
 		@update_queue = Queue.new 
-		@task_queue = TaskQueue.new
+		@task_queue = TaskQueue.new;	@task_queue.start
 
 		# Process UI changes
 		@timeout_handle = Gtk.timeout_add(100) do
-			i = 10
-			until @update_queue.empty? or i > 5
+			until @update_queue.empty? 
+				#puts "Dequeing: size = #{@update_queue.size}"
 				@update_queue.pop.invoke
 			end
+			true
 		end
+
+		# Load our settings
+		@music_library = MusicLibrary.new
+		load_settings(@music_library)
 
 		# Set up the tree view
 		@fv_store = TreeStore.new( Pixbuf, String, SongWrapper )
@@ -73,10 +81,10 @@ class MainWindow < MainWindowGenerated
 		col.pack_start( (cp = CellRendererPixbuf.new), false);	col.add_attribute(cp, :pixbuf, Icon)
 		col.pack_start( (ct = CellRendererText.new), true );	col.add_attribute(ct, :text, Text)
 		@file_view.append_column(col)
+		update_dialog
 	end
 
 	def show_dialog
-		update_dialog
 		@glade["MainWindow"].show_all; Gtk.main
 	end
 
@@ -87,9 +95,15 @@ class MainWindow < MainWindowGenerated
 	private
 
 	def update_dialog
+		puts "Update dialog"
 		update_track_info
 		update_file_tree
-		update_progress_bar
+
+		if @task_queue.empty?
+			fmt_string = (@music_library.empty?) ? _('No songs loaded') : 
+							       _("%i songs loaded") % (@music_library.size)
+			update_progress_bar( fmt_string, 0 )
+		end
 
 		@ok.sensitive = @task_queue.empty?
 		@cancel_action.sensitive = (not @task_queue.empty?)
@@ -109,17 +123,36 @@ class MainWindow < MainWindowGenerated
 
 	def update_file_tree
 		# TODO: Take the MusicLibrary and rebuild it as a tree
-		unless @music_library
+		if @music_library.empty?
 			@fv_store.clear
 			return
 		end
+		return unless @task_queue.empty?
 	end
 
 	def update_progress_bar(text = '', fraction = 0)
+		puts "text = #{text}, fraction = #{fraction}"
 		@progress_bar.text = text
-		@progress_bar.fraction = fraction 
+		@progress_bar.fraction = fraction
 	end
 
+	def load_music(path = "/tmp")
+		puts "Starting load: path = #{path}"
+		file_list = filelist_from_root(path)
+		@music_library.clear
+		upb = method("update_progress_bar").to_proc
+		@music_library.load(file_list) do |progress|
+			@update_queue << Task.new(upb, 
+						  [_("Found %i songs") % @music_library.size, progress])
+			puts @update_queue
+		end
+		@music_library.find_soundtracks do |curname|
+			puts "Unimplemented!"
+			true
+		end
+		ud = method("update_dialog").to_proc
+		@update_queue << Task.new(ud, [])
+	end
 
 	#####################
 	## Event Handlers
@@ -129,6 +162,11 @@ class MainWindow < MainWindowGenerated
 	def window_delete_event(widget, arg0); Gtk.main_quit; end
 
 	def on_filechooser_source_selection_changed(widget)
+		p = method("load_music").to_proc
+		puts "Size: #{@task_queue.size}"
+		@task_queue << Task.new(p, [widget.current_folder], true) unless widget.current_folder == @last_folder
+		@last_folder = widget.current_folder
+		update_dialog
 	end
 
 	def on_ok_released(widget)
@@ -147,7 +185,8 @@ class MainWindow < MainWindowGenerated
 	end
 
 	def on_soundtrack_format_button_released(widget)
-		puts "on_soundtrack_format_button_released() is not implemented yet."
+		puts @music_library.size
+		puts Thread.list.each {|x| print x.inspect, x[:name], "\n" }
 	end
 
 	def on_show_all_toggled(widget)
@@ -161,5 +200,10 @@ class MainWindow < MainWindowGenerated
 
 	def on_music_format_button_released(widget)
 		puts "on_music_format_button_released() is not implemented yet."
+	end
+
+	def on_cancel_action_released(widget)
+		@task_queue.clear_and_halt
+		update_dialog
 	end
 end
