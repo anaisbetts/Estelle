@@ -28,10 +28,9 @@ require 'singleton'
 
 # Estelle 
 require 'song'
-require 'libtagruby'
+require 'taglib'
 
 include GetText
-include Libtagruby
 
 class TagLibTagger < Logger::Application
 	include Singleton
@@ -42,7 +41,7 @@ class TagLibTagger < Logger::Application
 	end
 
 	def get_tags?(path)
-		@allowed ||= FileRef.defaultFileExtensions.toString.to_s.split ' '
+		@allowed ||= ['mpg', 'ogg', 'flac', 'mpc', 'mp3']
 		return @allowed.include?(Pathname.new(path).extname.slice(1,10))
 	end
 
@@ -50,25 +49,33 @@ class TagLibTagger < Logger::Application
 	TaglibMapping = { :album => 'album', :artist => 'artist', :genre => 'genre',
 			  :title => 'title', :track => 'track', :year => 'year' }
 	ApMapping = { :bitrate => 'bitrate', :channels => 'channels', 
-		      :length => 'length', :samplerate => 'sampleRate' }
+		      :length => 'length', :samplerate => 'samplerate' }
 
 	def song_info(path)
 		#log DEBUG, "Loading info for #{path.to_s}"
-		f = FileRef.new(path.to_s)
-		if f.isNull
+		begin
+			f = TagLib::File.new(path.to_s)
+		rescue Exception
 			#log DEBUG, "Couldn't read #{path.to_s}"
 			return nil
 		end
 
-		t = f.tag; s = Song.new; a = f.audioProperties
+		s = Song.new; #a = f.audioProperties
 		#log DEBUG, "Artist is #{t.artist.to_s}"
 		s[:path] = path
 		TaglibMapping.keys.each do |key|
-			s[key] = (t.send(TaglibMapping[key]).to_s)
+			begin
+				s[key] = (f.send(TaglibMapping[key]).to_s)
+			rescue Exception
+			end
 		end
 		ApMapping.keys.each do |key|
-			s[key] = (a.send(ApMapping[key]).to_s)
+			begin
+				s[key] = (f.send(ApMapping[key]).to_s)
+			rescue Exception
+			end
 		end
+		f.close
 
 		#log DEBUG, s.to_s; 
 		s

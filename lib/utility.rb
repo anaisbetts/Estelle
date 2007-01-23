@@ -37,7 +37,7 @@ class Task
 	end
 
 	def invoke
-		@call.call *@params if @call
+		@call.call(*@params) if @call
 	end
 
 	attr_reader :call, :params

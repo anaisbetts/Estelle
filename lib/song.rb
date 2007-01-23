@@ -33,12 +33,14 @@ class Song
 	end
 
 	def get_canonical_artist
+		return nil unless @data[:artist]
+
 		# First, replace everything in the 'Featuring' list with a comma
-		s = @data[:artist].clone
+		s = @data[:artist].clone 
 		FeaturingList.each { |x| s.sub!(x, ',') }
 
 		# Then, split on any sort of punctuation
-		artists = s.split /[;,:\|-]/
+		artists = s.split(/[;,:\|-]/)
 		artists.delete_if { |x| x.chomp.empty? }
 		@data[:canonical_artist] = (artists.sort.join ',')
 	end

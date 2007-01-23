@@ -1,6 +1,5 @@
 SUBDIRS = \
 	po 		\
-	taglib-ruby 	\
 	lib
 	
 ACLOCAL_AMFLAGS = -I m4

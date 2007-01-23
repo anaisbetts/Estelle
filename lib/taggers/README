@@ -1,0 +1,21 @@
+ruby-taglib is a library that wraps taglib.  It uses dl to give access to
+taglib's C library.
+
+Taglib is available at http://developer.kde.org/~wheeler/taglib.html
+
+To detect file types, ruby-taglib optionally uses Mahoro (
+http://mahoro.rubyforge.org/ ) when available.
+
+Example of use (with exception handling omitted):
+----
+require 'taglib'
+
+file = TagLib::File.new('test.mp3')
+puts "Old title: #{file.title}"
+
+file.title = "New title"
+file.save
+file.close
+----
+
+For a full list of data available, see taglib.rb itself.
