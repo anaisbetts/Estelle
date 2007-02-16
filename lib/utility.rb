@@ -108,5 +108,4 @@ def load_settings(library)
 	@settings = EstelleSettings.load(Platform.settings_file_path) || EstelleSettings.new
 	Song.sub_table = @settings.tagsubst_table
 	library.is_soundtrack = @settings.soundtrack_table
-
 end

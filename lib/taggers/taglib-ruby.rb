@@ -25,6 +25,7 @@ require 'logger'
 require 'gettext'
 require 'pathname'
 require 'singleton'
+require 'thread'
 
 # Estelle 
 require 'song'
@@ -75,7 +76,18 @@ class TagLibTagger < Logger::Application
 			rescue Exception
 			end
 		end
-		f.close
+
+		# We do some trickery here and close the files async
+		# This way we save some disk time
+		@to_close ||= []
+		@to_close << f
+		if @to_close.size > 200
+			buf = @to_close;	@to_close = []
+			t = Thread.new do 
+				buf.each {|x| x.close}
+			end
+			t.join
+		end
 
 		#log DEBUG, s.to_s; 
 		s

@@ -4,4 +4,5 @@
 <glade-project>
   <name>Estelle</name>
   <program_name>estelle</program_name>
+  <gnome_support>FALSE</gnome_support>
 </glade-project>

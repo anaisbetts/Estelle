@@ -47,7 +47,6 @@ class Estelle < Logger::Application
 	end
 
 	def parse(args)
-
 		# Set the defaults here
 		results = { :target => '.', 
 			    :musicformat => "<artist>/<album>/<track> - <title>.<ext>",

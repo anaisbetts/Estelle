@@ -48,7 +48,7 @@ class MusicLibrary < Logger::Application
 		@album_info = nil
 	end
 
-	def empty?; @tag_info and @tag_info.empty?; end
+	def empty?; not @tag_info or @tag_info.empty?; end
 
 	def size; (@tag_info ? @tag_info.size : 0); end
 
@@ -130,32 +130,37 @@ class MusicLibrary < Logger::Application
 				dest = File.join(target_root, 
 						 sndtrk_fstr % data)
 			end
-			list << [ current[:path], dest ]
+			list << [ current[:path], dest, current ]
 		end
 		list
 	end
 
-	def execute_action_list(list, action, execute_class = DebugList, output_file = nil)
+	def execute_action_list(list, action, execute_class = DebugList, output_file = nil, only_execute = 0)
 		do_it = execute_class.new
 		do_it.begin output_file
 
+		count = 0
 		list.each do |x| 
 			path = Pathname.new x[1]
 			do_it.mkdirs path.dirname
 
-			begin
+			count = count + 1
+			break if only_execute > 0 and count > only_execute
+
+#			begin
 				case action
 				when :copy
-					 do_it.cp x[0], x[1]
+					 do_it.cp x[0], x[1], x[2]
 				when :move
-					 do_it.mv x[0], x[1] 
+					 do_it.mv x[0], x[1], x[2]
 				when :symlink
-					 do_it.link x[0], x[1] 
+					 do_it.link x[0], x[1], x[2]
 				end
-			rescue
-				log ERROR, _("Failure processing %s") % x[0]
-				next
-			end
+#			rescue
+#				log ERROR, _("Failure processing %s") % x[0]
+#				next
+#			end
+
 		end
 
 		do_it.finish

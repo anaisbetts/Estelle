@@ -31,11 +31,15 @@ require 'platform'
 require 'song'
 require 'config'
 require 'utility'
+require 'entrydialog'
+require 'execute_list'
 
 include GetText
 include Gtk
 include Gdk
 
+# This is a lame class to allow us to store a reference to a Song object
+# inside a TreeModel item 
 class SongWrapper < GLib::Object
 	def initialize(song)
 		@obj = song
@@ -45,9 +49,9 @@ class SongWrapper < GLib::Object
 end
 
 class MainWindow < MainWindowGenerated
-	Icon = 0
-	Text = 1
-	SONG = 2
+	Song = 0
+	Icon = 1
+	Text = 2
 	def initialize
 		super(File.dirname(__FILE__), true, nil, Config::Package)
 
@@ -75,7 +79,7 @@ class MainWindow < MainWindowGenerated
 		load_settings(@music_library)
 
 		# Set up the tree view
-		@fv_store = TreeStore.new( Pixbuf, String, SongWrapper )
+		@fv_store = TreeStore.new( SongWrapper, Pixbuf, String )
 		@file_view.model = @fv_store
 		col = TreeViewColumn.new("Name")
 		col.pack_start( (cp = CellRendererPixbuf.new), false);	col.add_attribute(cp, :pixbuf, Icon)
@@ -122,12 +126,20 @@ class MainWindow < MainWindowGenerated
 	end
 
 	def update_file_tree
-		# TODO: Take the MusicLibrary and rebuild it as a tree
-		if @music_library.empty?
-			@fv_store.clear
-			return
-		end
 		return unless @task_queue.empty?
+		@fv_store.clear
+		return if @music_library.empty?
+
+		#dialog = EntryDialog.new
+		al = @music_library.create_action_list(Pathname.new(@filechooser_target.current_folder).split[1], 
+						       @music_format.text, 
+						       @soundtrack_format.text) do |tag, invalid|
+			# FIXME: This is blatantly wrong
+			'a'
+		end
+
+		limit = (@show_all.active? ? 0 : 100)
+		@music_library.execute_action_list(al, :copy, TreeModelBuilderList, @fv_store, limit)
 	end
 
 	def update_progress_bar(text = '', fraction = 0)
@@ -136,7 +148,12 @@ class MainWindow < MainWindowGenerated
 		@progress_bar.fraction = fraction
 	end
 
-	def load_music(path = "/tmp")
+	# The dummy task exists so that we still can cancel if we're processing the
+	# last task. Otherwise there will be zero in the queue but we'll still be
+	# working
+	@dummy_task = Task.new(lambda {a=1}, [])
+
+	def load_music(path)
 		puts "Starting load: path = #{path}"
 		file_list = filelist_from_root(path)
 		@music_library.clear
@@ -154,6 +171,12 @@ class MainWindow < MainWindowGenerated
 		@update_queue << Task.new(ud, [])
 	end
 
+	def queue_load_music(path)
+		p = method("load_music").to_proc
+		@task_queue << Task.new(p, [path], true) 
+		@task_queue << @dummy_task
+	end
+
 	#####################
 	## Event Handlers
 	#####################
@@ -162,9 +185,7 @@ class MainWindow < MainWindowGenerated
 	def window_delete_event(widget, arg0); Gtk.main_quit; end
 
 	def on_filechooser_source_selection_changed(widget)
-		p = method("load_music").to_proc
-		puts "Size: #{@task_queue.size}"
-		@task_queue << Task.new(p, [widget.current_folder], true) unless widget.current_folder == @last_folder
+		queue_load_music(widget.current_folder) unless widget.current_folder == @last_folder
 		@last_folder = widget.current_folder
 		update_dialog
 	end
@@ -190,7 +211,7 @@ class MainWindow < MainWindowGenerated
 	end
 
 	def on_show_all_toggled(widget)
-		puts "on_show_all_toggled() is not implemented yet."
+		update_file_tree
 	end
 
 	def window_delete_event(widget, arg0)
@@ -204,6 +225,7 @@ class MainWindow < MainWindowGenerated
 
 	def on_cancel_action_released(widget)
 		@task_queue.clear_and_halt
+		@task_queue.start
 		update_dialog
 	end
 end

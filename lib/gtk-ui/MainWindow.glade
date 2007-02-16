@@ -2,7 +2,6 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
-<requires lib="gnome"/>
 
 <widget class="GtkWindow" id="MainWindow">
   <property name="border_width">6</property>
@@ -335,7 +334,7 @@
 	      <property name="editable">True</property>
 	      <property name="visibility">True</property>
 	      <property name="max_length">0</property>
-	      <property name="text"></property>
+	      <property name="text" translatable="yes" comments="Only translate the word 'Soundtracks'">Soundtracks/&lt;album&gt;/&lt;track&gt; - &lt;title&gt; (&lt;artist&gt;).&lt;ext&gt;</property>
 	      <property name="has_frame">True</property>
 	      <property name="invisible_char">*</property>
 	      <property name="activates_default">False</property>
@@ -356,7 +355,7 @@
 	      <property name="editable">True</property>
 	      <property name="visibility">True</property>
 	      <property name="max_length">0</property>
-	      <property name="text"></property>
+	      <property name="text">&lt;Artist&gt;/&lt;Album&gt;/&lt;Track&gt; - &lt;Name&gt;.&lt;ext&gt;</property>
 	      <property name="has_frame">True</property>
 	      <property name="invisible_char">*</property>
 	      <property name="activates_default">False</property>
