@@ -57,9 +57,10 @@ class ButtonDialog < ButtonDialogGenerated
 		super(File.dirname(__FILE__), true, nil, Config::Package)
 	end
 
-	def prompt(primary_text, secondary_text, items, style = Gtk::ButtonBox::END)
+	def prompt(primary_text, secondary_text, title, items, style = Gtk::ButtonBox::END)
 		@clicked = nil
 		@buttonbox.layout_style = style
+		@glade["ButtonDialog"].title = title
 		@prompt.markup = "<span size='xx-large'>#{primary_text}</span>\n\n#{secondary_text}"
 		items.each { |btn| btn.add_to_buttonbox(self, @buttonbox) }
 		@glade["ButtonDialog"].show_all;	Gtk.main
