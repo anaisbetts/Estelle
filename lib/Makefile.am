@@ -1,5 +1,6 @@
 GLADE_SOURCES = \
 	gtk-ui/EntryDialog.glade \
+	gtk-ui/ButtonDialog.glade \
 	gtk-ui/MainWindow.glade
 
 GTKUI_SOURCES = \
