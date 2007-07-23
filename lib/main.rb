@@ -21,6 +21,7 @@
 $:.unshift File.join(File.dirname(__FILE__))
 
 # Standard library
+require 'rubygems'
 require 'logger'
 require 'gettext'
 require 'optparse'
