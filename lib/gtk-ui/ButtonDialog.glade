@@ -114,7 +114,7 @@ Secondary text should go here!</property>
 	<widget class="GtkHButtonBox" id="buttonbox">
 	  <property name="visible">True</property>
 	  <property name="layout_style">GTK_BUTTONBOX_DEFAULT_STYLE</property>
-	  <property name="spacing">0</property>
+	  <property name="spacing">6</property>
 	</widget>
 	<packing>
 	  <property name="padding">6</property>

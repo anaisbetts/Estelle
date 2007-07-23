@@ -32,6 +32,7 @@ require 'song'
 require 'config'
 require 'utility'
 require 'entrydialog'
+require 'buttondialog'
 require 'execute_list'
 
 include GetText
@@ -158,15 +159,33 @@ class MainWindow < MainWindowGenerated
 		file_list = filelist_from_root(path)
 		@music_library.clear
 		upb = method("update_progress_bar").to_proc
+
 		@music_library.load(file_list) do |progress|
 			@update_queue << Task.new(upb, 
 						  [_("Found %i songs") % @music_library.size, progress])
 			puts @update_queue
 		end
+
+		bd = ButtonDialog.new
+		@@buttons ||= [ ButtonDesc.new_stock(Stock::NO),
+				ButtonDesc.new_stock(Stock::YES),
+				ButtonDesc.new_stock(Stock::CANCEL, true) ]
+
+		quit = false	
 		@music_library.find_soundtracks do |curname|
-			puts "Unimplemented!"
-			true
+			ret = bd.prompt(_("Is '%s' a soundtrack?") % curname,
+					_("'%s' appears to be a soundtrack or compilation album. Is this correct?") % curname,
+					_("Soundtrack found"), 
+					 buttons)
+			if ret == :gtk-cancel
+				quit = true
+				break
+			end
+			return (ret == :gtk-ok)
 		end
+
+		@music_library.clear if quit
+
 		ud = method("update_dialog").to_proc
 		@update_queue << Task.new(ud, [])
 	end
@@ -215,6 +234,7 @@ class MainWindow < MainWindowGenerated
 	end
 
 	def window_delete_event(widget, arg0)
+		@settings.save(Platform.settings_file_path)
 		Gtk.timeout_remove @timeout_handle
 		Gtk.main_quit
 	end

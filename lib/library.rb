@@ -119,13 +119,13 @@ class MusicLibrary < Logger::Application
 		@tag_info.values.each do |current|
 			if @is_soundtrack[ current[:album] ] != true
 				data = music_tags.collect do |x| 
-					current.checked_tag(x, InvalidChars, lambda { |y,z| yield y,InvalidCharsString })
+					current.checked_tag(x, InvalidChars, lambda { |a,b,c| yield a,InvalidCharsString,c })
 				end
 				dest = File.join(target_root, 
 						 music_fstr % data)
 			else
 				data = sndtrk_tags.collect do |x| 
-					current.checked_tag(x, InvalidChars, lambda { |y,z| yield y,InvalidCharsString })
+					current.checked_tag(x, InvalidChars, lambda { |a,b,c| yield a,InvalidCharsString,c})
 				end
 				dest = File.join(target_root, 
 						 sndtrk_fstr % data)
@@ -147,7 +147,7 @@ class MusicLibrary < Logger::Application
 			count = count + 1
 			break if only_execute > 0 and count > only_execute
 
-#			begin
+			begin
 				case action
 				when :copy
 					 do_it.cp x[0], x[1], x[2]
@@ -156,10 +156,10 @@ class MusicLibrary < Logger::Application
 				when :symlink
 					 do_it.link x[0], x[1], x[2]
 				end
-#			rescue
-#				log ERROR, _("Failure processing %s") % x[0]
-#				next
-#			end
+			rescue
+				log ERROR, _("Failure processing %s") % x[0]
+				next
+			end
 
 		end
 

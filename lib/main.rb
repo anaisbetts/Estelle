@@ -185,9 +185,9 @@ class Estelle < Logger::Application
 
 		list = library.create_action_list(results[:target], 
 						  results[:musicformat], 
-						  results[:sndtrkformat]) do |tag, invalid|
+						  results[:sndtrkformat]) do |tag, invalid, *defparm|
 			puts _("The tag '%s' has invalid characters; '%s' are not allowed") % [tag, invalid]
-			puts _("Please enter a replacement:")
+			puts _("Please type a replacement or hit enter to replace with\n%s\n" % defparm)
 			STDIN.gets
 		end
 
@@ -200,8 +200,6 @@ class Estelle < Logger::Application
 					    results[:script])
 
 		# Save out the settings
-		@settings.save(Platform.settings_file_path)
-
 		log DEBUG, 'Exiting application'
 	end
 
