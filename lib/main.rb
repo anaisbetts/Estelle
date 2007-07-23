@@ -32,7 +32,7 @@ require 'library'
 require 'settings'
 require 'platform'
 require 'song'
-require 'config'
+#require 'config'
 require 'utility'
 
 include GetText

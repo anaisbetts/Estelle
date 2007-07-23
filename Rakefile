@@ -1,4 +1,5 @@
-$:.unshift 'lib'
+$:.unshift File.join(File.dirname(__FILE__))
+
 require 'rubygems'                                                                                                                             
 require 'rake/gempackagetask'                                                                                                                  
 require 'rake/contrib/rubyforgepublisher'                                                                                                      
@@ -6,6 +7,8 @@ require 'rake/clean'
 require 'rake/rdoctask'                                                                                                                        
 require 'rake/testtask'
 require 'spec'
+
+require 'build/expand'
 
 ### Constants
 
@@ -16,16 +19,25 @@ PKG_FILES = FileList[
 ]
 
 # Fixed up clean section to pick up extensions
-CLEAN += FileList["**/*~", "**/*.bak", "**/core", 'ext/taglib/**/*.o', 'ext/**/*.dll', 'ext/**/*.so', 'ext/**/*.dylib']
-CLOBBER += FileList['ext/**/Makefile', 'ext/**/CMakeCache.txt']
+CLEAN = FileList["**/*~", "**/*.bak", "**/core", 'ext/taglib/**/*.o', 'ext/**/*.dll', 'ext/**/*.so', 'ext/**/*.dylib']
+CLOBBER = FileList['ext/**/Makefile', 'ext/**/CMakeCache.txt']
 
 
 ########################
 ## Tasks
 ########################
 
-# Taglib
+expand_files = FileList.new '**/*.in'
+expand_files.each() do |ex|
+	file ex.sub(/\.in$/, '') => ex do |f| 
+		p f.source; p f.name; expand_file(f.source, f.name) 
+	end
+end
 
+desc "Process .in files"
+task :expandify => expand_files
+
+# Taglib
 desc "Build the Taglib library"
 task :taglib do |t|
 	sh "cd ext/taglib && cmake ."
