@@ -19,6 +19,7 @@
 ###########################################################################
 
 # Ruby standard library
+require 'rubygems'
 require 'logger'
 require 'gettext'
 require 'pathname'
