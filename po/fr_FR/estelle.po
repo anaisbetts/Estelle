@@ -5,9 +5,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.2\n"
+"Project-Id-Version: estelle 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-21 15:10-0500\n"
+"POT-Creation-Date: 2007-07-22 22:13-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,158 +15,164 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../lib/gtk-ui/MainWindow.glade.h:1
-msgid "Action:"
+#: lib/gtk-ui/mainwindow.rb:108
+msgid "No songs loaded"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:2
-msgid "Copy files to target folder"
+#: lib/gtk-ui/mainwindow.rb:109
+msgid "%i songs loaded"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:3
-msgid "Create links to original folder"
+#: lib/gtk-ui/mainwindow.rb:119
+msgid "Track Information"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:4
-msgid "Estelle: The Music Organizer"
+#: lib/gtk-ui/mainwindow.rb:121
+msgid ""
+"\n"
+"<i>No Track Selected</i>"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:5
-msgid "Move files to target folder"
+#: lib/gtk-ui/mainwindow.rb:165
+msgid "Found %i songs"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:6
-msgid "Music Folder:"
+#: lib/gtk-ui/mainwindow.rb:176
+msgid "Is '%s' a soundtrack?"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:7
-msgid "Music Format:"
+#: lib/gtk-ui/mainwindow.rb:177
+msgid "'%s' appears to be a soundtrack or compilation album. Is this correct?"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:8
-msgid "Select the folder where your files will be saved"
+#: lib/gtk-ui/mainwindow.rb:178
+msgid "Soundtrack found"
 msgstr ""
 
-#: ../lib/gtk-ui/MainWindow.glade.h:9
-msgid "Select your current music folder"
-msgstr ""
-
-#: ../lib/gtk-ui/MainWindow.glade.h:10
-msgid "Show all tracks"
-msgstr ""
-
-#: ../lib/gtk-ui/MainWindow.glade.h:11
-msgid "Soundtrack Format:"
-msgstr ""
-
-#: ../lib/gtk-ui/MainWindow.glade.h:12
-msgid "Target Folder:"
-msgstr ""
-
-#: ../lib/library.rb:148
-#, c-format
+#: lib/library.rb:160
 msgid "Failure processing %s"
 msgstr ""
 
-#: ../lib/main.rb:58
+#: lib/main.rb:53
+msgid ""
+"Only translate the word 'Soundtracks'|Soundtracks/<album>/<track> - <title> "
+"(<artist>).<ext>"
+msgstr ""
+
+#: lib/main.rb:58
 msgid "Usage: Estelle [options]"
 msgstr ""
 
-#: ../lib/main.rb:61
+#: lib/main.rb:61
 msgid "Specific options:"
 msgstr ""
 
-#: ../lib/main.rb:64
+#: lib/main.rb:63
+msgid "--action type"
+msgstr ""
+
+#: lib/main.rb:64
 msgid "Action to perform (one of 'copy', 'move', 'symlink')"
 msgstr ""
 
-#: ../lib/main.rb:72
+#: lib/main.rb:68
+msgid "--script [file]"
+msgstr ""
+
+#: lib/main.rb:68
+msgid "Instead of performing the action, make a script"
+msgstr ""
+
+#: lib/main.rb:72
 msgid "--library /path/to/music"
 msgstr ""
 
-#: ../lib/main.rb:73
+#: lib/main.rb:73
 msgid "Directory to recursively scan for music"
 msgstr ""
 
-#: ../lib/main.rb:77
+#: lib/main.rb:77
 msgid "--musicformat <format>"
 msgstr ""
 
-#: ../lib/main.rb:78
+#: lib/main.rb:78
 msgid "Format to rename music (see man page for details)"
 msgstr ""
 
-#: ../lib/main.rb:82
+#: lib/main.rb:82
 msgid "--soundtrackformat <format>"
 msgstr ""
 
-#: ../lib/main.rb:83
+#: lib/main.rb:83
 msgid "Format to rename soundtracks (see man page for details)"
 msgstr ""
 
-#: ../lib/main.rb:87
+#: lib/main.rb:87
 msgid "--playlist file"
 msgstr ""
 
-#: ../lib/main.rb:88
+#: lib/main.rb:88
 msgid "Playlist to read for file list"
 msgstr ""
 
-#: ../lib/main.rb:92
+#: lib/main.rb:92
 msgid "Directory to put music in"
 msgstr ""
 
-#: ../lib/main.rb:96
+#: lib/main.rb:96
 msgid "Run the GUI version of this application"
 msgstr ""
 
-#: ../lib/main.rb:101
+#: lib/main.rb:101
 msgid "Common options:"
 msgstr ""
 
-#: ../lib/main.rb:103
+#: lib/main.rb:103
 msgid "Show this message"
 msgstr ""
 
-#: ../lib/main.rb:108
+#: lib/main.rb:108
 msgid "Run in debug mode (Extra messages)"
 msgstr ""
 
-#: ../lib/main.rb:112
+#: lib/main.rb:112
 msgid "Run verbosely"
 msgstr ""
 
-#: ../lib/main.rb:116
+#: lib/main.rb:116
 msgid "Show version"
 msgstr ""
 
-#: ../lib/main.rb:189
-#, c-format
+#: lib/main.rb:140
+msgid "Missing parameter; see --help for more info"
+msgstr ""
+
+#: lib/main.rb:143
+msgid "Invalid option; see --help for more info"
+msgstr ""
+
+#: lib/main.rb:178
 msgid "%s%% complete"
 msgstr ""
 
-#: ../lib/main.rb:193
-#, c-format
+#: lib/main.rb:182
 msgid "'%s' may be a soundtrack or compilation. Is it? (Y/n) "
 msgstr ""
 
-#: ../lib/main.rb:200
-#, c-format
+#: lib/main.rb:189
 msgid "The tag '%s' has invalid characters; '%s' are not allowed"
 msgstr ""
 
-#: ../lib/main.rb:201
-msgid "Please enter a replacement:"
+#: lib/main.rb:190
+msgid ""
+"Please type a replacement or hit enter to replace with\n"
+"%s\n"
 msgstr ""
 
-#: ../lib/main.rb:206
+#: lib/main.rb:195
 msgid "Executing request..."
 msgstr ""
 
-#: ../lib/song.rb:97
+#: lib/song.rb:101
 msgid "(Unknown)"
-msgstr ""
-
-#: ../lib/gtk-ui/mainwindow.rb:71
-msgid "Track Information"
 msgstr ""
