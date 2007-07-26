@@ -27,15 +27,14 @@ CLOBBER = FileList['ext/**/Makefile', 'ext/**/CMakeCache.txt']
 ## Tasks
 ########################
 
-expand_files = FileList.new '**/*.in'
-expand_files.each() do |ex|
-	file ex.sub(/\.in$/, '') => ex do |f| 
-		p f.source; p f.name; expand_file(f.source, f.name) 
-	end
-end
+to_expand = FileList.new '**/*.in'
 
 desc "Process .in files"
-task :expandify => expand_files
+task :expandify => to_expand do |f|
+	to_expand.each() do |ex|
+		expand_file(ex, ex.gsub(/\.in$/, ''))
+	end
+end
 
 # Taglib
 desc "Build the Taglib library"
@@ -54,7 +53,8 @@ end
 # Default Action
 task :default => [
 	:taglib,
-	:updatepo
+	:updatepo,
+	:expandify
 ]
 
 

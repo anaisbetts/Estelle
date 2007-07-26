@@ -42,10 +42,10 @@ class ShellScriptList
 		@o.puts '#!/bin/sh'
 	end
 
-	def cp(src, dest, song); @o.puts "cp -a #{src} #{dest}"; end
-	def mv(src, dest, song); @o.puts "mv #{src} #{dest}"; end
-	def link(from, to, song); @o.puts "ln -s #{from} #{to}"; end
-	def mkdirs(path); @o.puts "mkdir -p #{path}"; end
+	def cp(src, dest, song); @o.puts "cp #{escaped_path(src)} #{escaped_path(dest)}"; end
+	def mv(src, dest, song); @o.puts "mv #{escaped_path(src)} #{escaped_path(dest)}"; end
+	def link(from, to, song); @o.puts "ln -s #{escaped_path(from)} #{escaped_path(to)}"; end
+	def mkdirs(path); @o.puts "mkdir -p #{escaped_path(path)}"; end
 	def finish; @o.close; end
 end
 
@@ -108,4 +108,3 @@ class TreeModelBuilderList
 
 	def finish; @cache.clear; end
 end
-

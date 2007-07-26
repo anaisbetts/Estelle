@@ -21,6 +21,7 @@
 $:.unshift File.join(File.dirname(__FILE__))
 
 # Standard library
+require 'config'
 require 'rubygems'
 require 'logger'
 require 'gettext'
@@ -32,7 +33,7 @@ require 'library'
 require 'settings'
 require 'platform'
 require 'song'
-#require 'config'
+require 'config'
 require 'utility'
 
 include GetText
@@ -207,14 +208,14 @@ class Estelle < Logger::Application
 	def run_gui
 		$:.unshift File.dirname(__FILE__)
 		$:.unshift File.join(File.dirname(__FILE__), 'gtk-ui')
-		require 'libglade2'
-		require 'mainwindow'
+		#require 'libglade2'
+		#require 'mainwindow'
 
 		log DEBUG, 'Starting GUI...'
-		Gtk.init
-		Gnome::Program.new(Config::Package, Config::Version)
-		main_window = MainWindow.new
-		Gtk.main
+		#Gtk.init
+		#Gnome::Program.new(Config::Package, Config::Version)
+		#main_window = MainWindow.new
+		#Gtk.main
 	end
 end
 

@@ -95,6 +95,23 @@ end
 # Miscellaneous Functions
 ##############################
 
+ToEscape = [
+	[ '\\', "\\\\" ],
+	[ '"', "\"" ],
+	[ '\'', "'" ],
+	[ ',', "\\," ],
+	[ '\'', "\\'" ],
+	[ '-', "\\-" ],
+	[ '(', "\\(" ],
+	[ ')', "\\)" ],
+	[ '&', "\\&" ],
+	[ ' ', "\\ " ],
+]
+def escaped_path(path)
+	ret = path.clone.to_s
+	ToEscape.each { |x| ret.gsub!(x[0], x[1]) } ; ret
+end
+
 def filelist_from_root(path)
 	list = []
 	d = Pathname.new path
