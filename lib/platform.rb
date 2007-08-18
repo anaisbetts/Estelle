@@ -19,26 +19,36 @@
 ###########################################################################
 
 # Standard library
+require 'rubygems'
 require 'logger'
 require 'gettext'
 
 include GetText
 
 module Platform
-	def Platform.os
+class << self 
+
+	def os
 		return :linux if RUBY_PLATFORM =~ /linux/
 		return :windows if RUBY_PLATFORM =~ /win/
 		return :solaris if RUBY_PLATFORM =~ /solaris/
 		return :bsd if RUBY_PLATFORM =~ /bsd/
+		return :osx if RUBY_PLATFORM =~ /darwin/
 	end
 
-	def Platform.settings_file_path 
-		#case os
-		# FIXME: Windows is so lame
-		#when :windows
-		#else
-			homedir = (ENV["HOME"] ? ENV["HOME"] : ".")
-			File.join(homedir, ".estelle")
-		#end
+	def home_dir
+		# FIXME: This is clearly wrong
+		return 'C:\temp' if :windows
+
+		homedir = (ENV["HOME"] ? ENV["HOME"] : ".")
+		File.join(homedir, ".estelle")
 	end
+
+	def which(program)
+		# FIXME: This is also clearly wrong
+		return "" if :windows
+
+		return `which #{program}`
+	end
+end # Class << self
 end

@@ -9,6 +9,7 @@ require 'rake/testtask'
 require 'spec'
 
 require 'build/expand'
+require 'lib/platform'
 
 ### Constants
 
@@ -32,7 +33,7 @@ to_expand = FileList.new '**/*.in'
 desc "Process .in files"
 task :expandify => to_expand do |f|
 	to_expand.each() do |ex|
-		expand_file(ex, ex.gsub(/\.in$/, ''))
+		expand_file(ex, ex.gsub(/\.in$/, ''), ExpandFileEnvironment)
 	end
 end
 
@@ -54,7 +55,7 @@ end
 task :default => [
 	:taglib,
 	:updatepo,
-	:expandify
+	:expandify,
 ]
 
 

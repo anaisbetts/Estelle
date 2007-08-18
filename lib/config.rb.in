@@ -1,5 +1,0 @@
-module Config
-	Package = "@PACKAGE@"
-	Version = "@VERSION@"
-	Prefix = "@prefix@" 
-end
