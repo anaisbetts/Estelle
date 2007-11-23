@@ -60,7 +60,7 @@ class << self
 	end
 
 	def binary_dir
-		return File.join(Config::RootDir, 'bin')
+		return File.join(AppConfig::RootDir, 'bin')
 	end
 
 end # Class << self

@@ -126,7 +126,7 @@ class Estelle < Logger::Application
 
 	def run
 		# Initialize Gettext (root, domain, locale dir, encoding) and set up logging
-    		bindtextdomain(Config::Package, nil, nil, "UTF-8")
+    		bindtextdomain(AppConfig::Package, nil, nil, "UTF-8")
 		self.level = Logger::DEBUG
 		
 		# If we're called with no arguments, run the GUI version

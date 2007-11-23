@@ -49,7 +49,7 @@ end
 
 desc "Run unit tests"
 Rake::TestTask.new("test") do |t|
-	t.pattern = 'tests/**/*.rb'
+	t.pattern = 'test/**/*.rb'
 	t.verbose = true
 	t.warning = true
 end
