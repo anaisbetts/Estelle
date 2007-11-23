@@ -27,6 +27,7 @@ require 'logger'
 require 'gettext'
 require 'optparse'
 require 'optparse/time'
+require 'highline'
 
 # Estelle
 require 'library'
@@ -156,6 +157,8 @@ class Estelle < Logger::Application
 			exit
 		end
 
+		io = HighLine.new
+
 		# Figure out a list of files to load
 		file_list = []
 		if results.has_key? :dir
@@ -181,16 +184,14 @@ class Estelle < Logger::Application
 		end
 
 		library.find_soundtracks do |curname|
-			print _("'%s' may be a soundtrack or compilation. Is it? (Y/n) ") % curname
-			(STDIN.gets =~ /^[Nn]/ ? false : true)
+			io.agree _("'%s' may be a soundtrack or compilation. Is it? (Y/n) ") % curname
 		end
 
 		list = library.create_action_list(results[:target], 
 						  results[:musicformat], 
 						  results[:sndtrkformat]) do |tag, invalid, *defparm|
-			puts _("The tag '%s' has invalid characters; '%s' are not allowed") % [tag, invalid]
-			puts _("Please type a replacement or hit enter to replace with\n%s\n" % defparm)
-			STDIN.gets
+			io.say _("The tag '%s' has invalid characters; '%s' are not allowed") % [tag, invalid]
+			io.ask _("Please type a replacement or hit enter to replace with\n%s\n" % defparm)
 		end
 
 		# Execute the list

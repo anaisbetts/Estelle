@@ -96,7 +96,7 @@ class MusicLibrary < Logger::Application
 			@tag_info.delete current
 		end 
 
-		#save_cache
+		save_cache
 
 		log INFO, "Loaded #{@tag_info.size} files"
 		log DEBUG, "Exiting load"
