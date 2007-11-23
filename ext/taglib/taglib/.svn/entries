@@ -1,0 +1,150 @@
+8
+
+dir
+691208
+svn://anonsvn.kde.org/home/kde/trunk/kdesupport/taglib/taglib
+svn://anonsvn.kde.org/home/kde
+
+
+
+2007-07-19T15:20:10.084073Z
+689932
+wheeler
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+283d02a7-25f6-0310-bc7c-ecb5cbfe19da
+
+mpc
+dir
+
+audioproperties.cpp
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+3f6243868cd0e735ffd673f2ba2f7183
+2006-09-24T17:12:40.048222Z
+588022
+wheeler
+has-props
+
+tag.h
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+5fd36abec78da3740378002eb8264c33
+2007-01-07T15:33:21.561444Z
+620852
+wheeler
+has-props
+
+fileref.h
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+646097b348f6291cf50866f5c27006d8
+2007-01-07T15:31:01.342370Z
+620850
+wheeler
+has-props
+
+audioproperties.h
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+70ec8c0fcfa14c69d08a4b8b8392862c
+2007-01-02T11:54:03.451998Z
+618883
+bhards
+has-props
+
+ape
+dir
+
+flac
+dir
+
+toolkit
+dir
+
+mpeg
+dir
+
+Makefile.am
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+857425a53aa1b1a7c42df375a15632db
+2006-09-24T18:10:30.689135Z
+588037
+wheeler
+has-props
+
+ogg
+dir
+
+tag.cpp
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+0573a46aa17f710bc828f9bd08851201
+2006-09-24T17:12:40.048222Z
+588022
+wheeler
+has-props
+
+CMakeLists.txt
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+834f82f15602104526caaec47e0a6309
+2007-07-04T10:12:22.478808Z
+683171
+aumuell
+has-props
+
+fileref.cpp
+file
+
+
+
+
+2007-07-23T04:28:57.000000Z
+2978fd07190a3e7b844a9f9ef112bc64
+2006-09-24T17:12:40.048222Z
+588022
+wheeler
+has-props
+

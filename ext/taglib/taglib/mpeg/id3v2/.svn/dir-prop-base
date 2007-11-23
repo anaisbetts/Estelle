@@ -1,0 +1,20 @@
+K 10
+svn:ignore
+V 202
+.aux
+.deps
+.libs
+Makefile
+Makefile.in
+id3v2extendedheader.lo
+id3v2footer.lo
+id3v2frame.lo
+id3v2framefactory.lo
+id3v2framelist.lo
+id3v2framelistmap.lo
+id3v2header.lo
+id3v2tag.lo
+libid3v2.la
+synchdata.lo
+
+END

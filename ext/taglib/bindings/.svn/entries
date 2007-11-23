@@ -1,0 +1,69 @@
+8
+
+dir
+691208
+svn://anonsvn.kde.org/home/kde/trunk/kdesupport/taglib/bindings
+svn://anonsvn.kde.org/home/kde
+
+
+
+2007-05-31T20:51:55.358144Z
+670244
+mueller
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+283d02a7-25f6-0310-bc7c-ecb5cbfe19da
+
+c
+dir
+
+Makefile.am
+file
+
+
+
+
+2007-07-23T04:28:53.000000Z
+b066cadcd3a1ebe350fd57d3ea0d29d6
+2006-09-24T16:17:47.444735Z
+587989
+wheeler
+has-props
+
+CMakeLists.txt
+file
+
+
+
+
+2007-07-23T04:28:53.000000Z
+5ba0642fbf442bc58e18ba51e70dcf43
+2006-09-24T12:59:05.041264Z
+587917
+mlaurent
+has-props
+
+README
+file
+
+
+
+
+2007-07-23T04:28:53.000000Z
+91964cf58b452f2b1a7dee8084994fb3
+2005-07-26T00:37:39.664159Z
+438757
+wheeler
+
