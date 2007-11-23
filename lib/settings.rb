@@ -53,3 +53,15 @@ class EstelleSettings
 		File.open(path, "w") { |file| file.write(YAML::dump(self)) }
 	end
 end
+
+def load_settings(library)
+	# Load our settings
+	# FIXME: I am retarded
+	@settings = EstelleSettings.load(Platform.settings_file_path) || EstelleSettings.new
+	Song.sub_table = @settings.tagsubst_table
+	library.is_soundtrack = @settings.soundtrack_table
+end
+
+def save_settings(library)
+	@settings.save(Platform.settings_file_path)
+end

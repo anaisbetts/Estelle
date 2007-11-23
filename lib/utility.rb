@@ -122,10 +122,3 @@ def filelist_from_root(path)
 
 	list
 end
-
-def load_settings(library)
-	# Load our settings
-	@settings = EstelleSettings.load(Platform.settings_file_path) || EstelleSettings.new
-	Song.sub_table = @settings.tagsubst_table
-	library.is_soundtrack = @settings.soundtrack_table
-end

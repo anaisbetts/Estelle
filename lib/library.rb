@@ -70,6 +70,7 @@ class MusicLibrary < Logger::Application
 		yield_every = (files.size * progress_rate).to_i
 		files.each do |current|
 			count += 1
+			yield(count.to_f / files.size) if (block_given? and (count % yield_every) == 0)
 			#log DEBUG, 'Reading %s..' % current
 			
 			# First, see if we've already scanned this file before (save some time
