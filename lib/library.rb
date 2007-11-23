@@ -137,7 +137,7 @@ class MusicLibrary < Logger::Application
 			artists = {}
 			current = @album_info[curname]
 
-			next if @is_soundtrack.contains_key? curname
+			next if @is_soundtrack.has_key? curname
 			current.each { |track| artists[track[:canonical_artist]] ||= 0; artists[track[:canonical_artist]] += 1; }
 			histogram = artists.sort { |a,b| a[1] <=> b[1] }	# Sort by value
 			#log DEBUG, "#{curname} - #{histogram.size} artists, leader has #{histogram[0][1]}"
