@@ -1,0 +1,8 @@
+#!/bin/sh
+
+targetfile=$(basename $1)
+if [ -e tests/unit/test_$targetfile ]; then
+	zentest $1 tests/unit/test_$targetfile > tests/unit/test_$targetfile.missing
+else
+	zentest $1 > tests/unit/test_$targetfile
+fi

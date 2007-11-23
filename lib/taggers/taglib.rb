@@ -21,8 +21,15 @@
 # used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from the author(s).
 
+$:.unshift File.join(File.dirname(__FILE__), '..')
+
+require 'rubygems'
 require 'dl'
 require 'dl/import'
+
+# Estelle section
+require 'config'
+require 'platform'
 
 begin
 	require 'mahoro'
@@ -41,6 +48,7 @@ extend DL::Importable
 
 # Taglib is a man of many names...
 libtag_c_names = ['libtag_c.so', 'libtag_c.so.0', 'libtag_c.dylib', 'libtag_c.dll']
+libtag_c_names += libtag_c_names.collect {|x| ::File.join(Platform.binary_dir, x)}
 
 loaded = false
 libtag_c_names.each do |name|

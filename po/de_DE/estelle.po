@@ -1,38 +1,4 @@
-#: lib/gtk-ui/mainwindow.rb:108
-msgid "No songs loaded"
-msgstr ""
-
-#: lib/gtk-ui/mainwindow.rb:109
-msgid "%i songs loaded"
-msgstr ""
-
-#: lib/gtk-ui/mainwindow.rb:119
-msgid "Track Information"
-msgstr ""
-
-#: lib/gtk-ui/mainwindow.rb:121
-msgid ""
-"\n"
-"<i>No Track Selected</i>"
-msgstr ""
-
-#: lib/gtk-ui/mainwindow.rb:165
-msgid "Found %i songs"
-msgstr ""
-
-#: lib/gtk-ui/mainwindow.rb:176
-msgid "Is '%s' a soundtrack?"
-msgstr ""
-
-#: lib/gtk-ui/mainwindow.rb:177
-msgid "'%s' appears to be a soundtrack or compilation album. Is this correct?"
-msgstr ""
-
-#: lib/gtk-ui/mainwindow.rb:178
-msgid "Soundtrack found"
-msgstr ""
-
-#: lib/library.rb:161
+#: lib/library.rb:163
 msgid "Failure processing %s"
 msgstr ""
 
@@ -156,6 +122,6 @@ msgstr ""
 msgid "Executing request..."
 msgstr ""
 
-#: lib/song.rb:101
+#: lib/song.rb:104
 msgid "(Unknown)"
 msgstr ""

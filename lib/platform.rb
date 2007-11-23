@@ -18,6 +18,10 @@
 #   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
 ###########################################################################
 
+$:.unshift File.join(File.dirname(__FILE__))
+
+require 'config'
+
 # Standard library
 require 'rubygems'
 require 'logger'
@@ -27,7 +31,6 @@ include GetText
 
 module Platform
 class << self 
-
 	def os
 		return :linux if RUBY_PLATFORM =~ /linux/
 		return :windows if RUBY_PLATFORM =~ /win/
@@ -50,9 +53,15 @@ class << self
 
 		return `which #{program}`
 	end
+
 	def settings_file_path
 		# FIXME: Clearly, wrong.
 		return home_dir
 	end
+
+	def binary_dir
+		return File.join(Config::RootDir, 'bin')
+	end
+
 end # Class << self
 end

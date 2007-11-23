@@ -10,17 +10,10 @@ def expand_file(input_path, output_path)
 		end
 
 		m[1..50].each do |x|
-			buf.sub!(x, eval(x)) rescue nil
+			buf.sub!("@#{x}@", eval(x)) rescue nil
 		end
 		output.puts buf
 	end
 
 	[input,output].each {|x| x.close}
-end
-
-files = FileList.new('**/*.in')
-outfiles = files.collect {|x| x.sub(/\.in$/, '') }
-
-file outfiles => files do |t|
-
 end

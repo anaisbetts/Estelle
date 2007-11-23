@@ -219,6 +219,7 @@ class Estelle < Logger::Application
 	end
 end
 
+exit 0 unless __FILE__ == $0
 
 $the_app = Estelle.instance
 $the_app.run
