@@ -8,8 +8,6 @@ require 'rake/rdoctask'
 require 'rake/testtask'
 require 'spec'
 
-require 'lib/platform'
-
 # Load other build files
 Dir.glob("build/*.rake").each {|x| load x}
 
