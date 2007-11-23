@@ -203,7 +203,7 @@ class Estelle < Logger::Application
 					    results[:script])
 
 		# Save out the settings
-
+		save_settings(library)
 		log DEBUG, 'Exiting application'
 	end
 
