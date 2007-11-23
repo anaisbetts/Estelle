@@ -72,8 +72,9 @@ class MusicLibrary < Logger::Application
 			count += 1
 			#log DEBUG, 'Reading %s..' % current
 			
-			# First, see if we've already scanned this file before
-			md5sum = Digest::MD5.hexdigest(File.read(current))
+			# First, see if we've already scanned this file before (save some time
+			# and only read the first 256K)
+			md5sum = Digest::MD5.hexdigest(File.open(current, 'r') {|x| x.read(0x80000)})
 			if (@tag_info[current] = @md5_index[md5sum])
 				#log DEBUG, "Cache hit!"
 				next
