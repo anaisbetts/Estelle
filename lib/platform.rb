@@ -33,10 +33,10 @@ module Platform
 class << self 
 	def os
 		return :linux if RUBY_PLATFORM =~ /linux/
-		return :windows if RUBY_PLATFORM =~ /win/
+		return :osx if RUBY_PLATFORM =~ /darwin/
 		return :solaris if RUBY_PLATFORM =~ /solaris/
 		return :bsd if RUBY_PLATFORM =~ /bsd/
-		return :osx if RUBY_PLATFORM =~ /darwin/
+		return :windows if RUBY_PLATFORM =~ /win/
 	end
 
 	def home_dir

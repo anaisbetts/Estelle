@@ -2,7 +2,10 @@
 #                 classname: asrt / meth =  ratio%
 #                      File:    0 /   24 =   0.00%
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
+require 'taggers/taglib' 
 
 class TestFile < Test::Unit::TestCase
   def test_class_atime

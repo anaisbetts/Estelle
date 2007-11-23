@@ -5,7 +5,10 @@
 #           ShellScriptList:    0 /    6 =   0.00%
 #                 DebugList:    0 /    6 =   0.00%
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
+require 'execute_list' 
 
 class TestDebugList < Test::Unit::TestCase
   def test_begin

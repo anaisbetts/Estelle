@@ -54,12 +54,22 @@ Rake::TestTask.new("test") do |t|
 	t.warning = true
 end
 
+desc "Run code coverage"
+task :coverage do |t|
+	sh "rcov -xrefs " + Dir.glob("test/**/*.rb").join(' ') + " 2>/dev/null"
+end
+
 # Default Action
 task :default => [
 	:taglib,
 	:updatepo,
 	:makemo,
 	:expandify,
+]
+
+task :alltests => [
+	:test,
+	:coverage
 ]
 
 

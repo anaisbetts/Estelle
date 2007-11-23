@@ -2,7 +2,12 @@
 #                 classname: asrt / meth =  ratio%
 #              TagLibTagger:    0 /    3 =   0.00%
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
+require 'library' 
+
+require 'taggers/estelle-taglib'
 
 class TestTagLibTagger < Test::Unit::TestCase
   def test_class_instance

@@ -2,7 +2,10 @@
 #                 classname: asrt / meth =  ratio%
 #           EstelleSettings:    0 /    3 =   0.00%
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
+require 'settings' 
 
 class TestEstelleSettings < Test::Unit::TestCase
   def test_class_load

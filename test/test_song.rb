@@ -2,7 +2,10 @@
 #                 classname: asrt / meth =  ratio%
 #                      Song:    0 /   10 =   0.00%
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
+require 'song' 
 
 class TestSong < Test::Unit::TestCase
   def test_class_sub_table

@@ -2,30 +2,30 @@
 #                 classname: asrt / meth =  ratio%
 #                  Platform:    0 /    5 =   0.00%
 
-$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
-require 'platform'
+require 'platform' 
 
 class TestPlatform < Test::Unit::TestCase
 	def test_class_binary_dir
-		raise NotImplementedError, 'Need to write test_class_binary_dir'
+		assert_equal(AppConfig::RootDir + "/bin", Platform.binary_dir)
 	end
 
 	def test_class_home_dir
-		assert (Platform.home_dir == "/Users/paul/.estelle")
+		assert_equal("#{ENV['HOME']}/.estelle", Platform.home_dir)
 	end
 
 	def test_class_os
-		raise NotImplementedError, 'Need to write test_class_os'
+		assert_equal(:osx, Platform.os)
 	end
 
 	def test_class_settings_file_path
-		raise NotImplementedError, 'Need to write test_class_settings_file_path'
+		assert_equal(ENV["hOME"], Platform.settings_file_path)
 	end
 
 	def test_class_which
-		raise NotImplementedError, 'Need to write test_class_which'
+		assert_equal(`which ls`, Platform.which("ls"))
 	end
 end
 

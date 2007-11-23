@@ -3,7 +3,10 @@
 #                 TaskQueue:    0 /    6 =   0.00%
 #                      Task:    0 /    2 =   0.00%
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
+require 'utility' 
 
 class TestTask < Test::Unit::TestCase
   def test_call
