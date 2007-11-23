@@ -1,4 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__))
+$:.unshift File.dirname(__FILE__)
 
 require 'rubygems'                                                                                                                             
 require 'rake/gempackagetask'                                                                                                                  
@@ -8,8 +8,10 @@ require 'rake/rdoctask'
 require 'rake/testtask'
 require 'spec'
 
-require 'build/expand'
 require 'lib/platform'
+
+root_dir = File.dirname(__FILE__)
+load File.join(root_dir, 'build', 'expand.rake')
 
 ### Constants
 
@@ -33,19 +35,19 @@ to_expand = FileList.new '**/*.in'
 desc "Process .in files"
 task :expandify => to_expand do |f|
 	to_expand.each() do |ex|
-		expand_file(ex, ex.gsub(/\.in$/, ''), ExpandFileEnvironment)
+#		expand_file(ex, ex.gsub(/\.in$/, ''))
 	end
 end
 
 # Taglib
 desc "Build the Taglib library"
 task :taglib do |t|
-	sh "cd ext/taglib && cmake ."
-	sh "cd ext/taglib && make"
+#	sh "cd ext/taglib && cmake ."
+#	sh "cd ext/taglib && make"
 end
 
 desc "Run unit tests"
-Rake::TestTask.new("tests") do |t|
+Rake::TestTask.new("test") do |t|
 	t.pattern = 'tests/*.rb'
 	t.verbose = true
 	t.warning = true
