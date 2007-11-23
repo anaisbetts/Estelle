@@ -118,7 +118,7 @@ end
 def filelist_from_root(path)
 	list = []
 	d = Pathname.new path
-	d.find { |x| list << x.to_s }
+	d.find { |x| list << x.to_s if x.file? }
 
 	list
 end

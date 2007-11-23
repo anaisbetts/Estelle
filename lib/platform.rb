@@ -55,8 +55,7 @@ class << self
 	end
 
 	def settings_file_path
-		# FIXME: Clearly, wrong.
-		return home_dir
+		return File.join(home_dir, "settings.yaml")
 	end
 
 	def binary_dir

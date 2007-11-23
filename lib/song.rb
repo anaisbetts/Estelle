@@ -25,14 +25,15 @@ require 'rubygems'
 require 'logger'
 require 'gettext'
 require 'pathname'
+require 'digest/md5'
 
 include GetText
 
 FeaturingList = ['Featuring', 'Feat.', 'featuring', 'feat.', 'FEATURING', 'FEAT.']
 
 class Song 
-	def initialize
-		@data = {} 
+	def initialize(hash = {})
+		@data = hash.clone
 	end
 
 	def get_canonical_artist

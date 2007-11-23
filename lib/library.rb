@@ -25,6 +25,8 @@ require 'rubygems'
 require 'logger'
 require 'gettext'
 require 'pathname'
+require 'digest/md5'
+require 'zlib'
 
 # Estelle 
 require 'platform'
@@ -37,6 +39,7 @@ class MusicLibrary < Logger::Application
 	@taggers = nil
 	@tag_info = nil
 	@album_info = nil
+	@md5_index = nil
 
 	public 
 	attr_writer :is_soundtrack
@@ -59,6 +62,8 @@ class MusicLibrary < Logger::Application
 		load_taggers(DefaultTaggerPath) unless @taggers
 		return unless @taggers
 
+		load_cache
+
 		@tag_info = {}
 		log INFO, "Processing #{files.size} files..."
 		count = 0
@@ -66,6 +71,13 @@ class MusicLibrary < Logger::Application
 		files.each do |current|
 			count += 1
 			#log DEBUG, 'Reading %s..' % current
+			
+			# First, see if we've already scanned this file before
+			md5sum = Digest::MD5.hexdigest(File.read(current))
+			if (@tag_info[current] = @md5_index[md5sum])
+				#log DEBUG, "Cache hit!"
+				next
+			end
 
 			# Check to see if we can load this file
 			loader = nil
@@ -76,6 +88,7 @@ class MusicLibrary < Logger::Application
 
 			if (@tag_info[current] = loader.song_info(current))
 				@tag_info[current][:path] = current
+				@tag_info[current][:md5sum] = md5sum
 				next
 			end
 
@@ -83,8 +96,35 @@ class MusicLibrary < Logger::Application
 			@tag_info.delete current
 		end 
 
+		#save_cache
+
 		log INFO, "Loaded #{@tag_info.size} files"
 		log DEBUG, "Exiting load"
+	end
+
+	def load_cache(target = nil)
+		infile  = (target || File.join(Platform.home_dir, "libcache.yaml.gz"))
+		begin
+			a = nil; Zlib::GzipReader.open(infile) {|x| a = YAML::load(x.read)}
+			throw "Failed!" unless a.is_a? Hash and a.values.all? {|x| x.is_a? Hash}
+			@tag_info = {}; a.keys.each {|x| @tag_info[x] = Song.new(a[x])}
+		rescue 
+			# TODO: Worst debugging message evar.
+			log DEBUG, "Couldn't load cache"
+			@tag_info = {}
+		end
+
+		@md5_index = {}
+		@tag_info.values.each do |x|
+			next unless x[:md5sum]
+			@md5_index[x[:md5sum]] = x
+		end
+	end
+
+	def save_cache(target = nil)
+		outfile  = (target || File.join(Platform.home_dir, "libcache.yaml.gz"))
+		t = {}; @tag_info.keys.each {|x| t[x] = @tag_info[x].to_hash}
+		Zlib::GzipWriter.open(outfile) { |x| x.puts t.to_yaml() }
 	end
 
 	def find_soundtracks
