@@ -38,7 +38,7 @@ class << self
 
 	def home_dir
 		# FIXME: This is clearly wrong
-		return 'C:\temp' if :windows
+		return 'C:\temp' if os == :windows
 
 		homedir = (ENV["HOME"] ? ENV["HOME"] : ".")
 		File.join(homedir, ".estelle")
@@ -46,9 +46,13 @@ class << self
 
 	def which(program)
 		# FIXME: This is also clearly wrong
-		return "" if :windows
+		return "" if os == :windows
 
 		return `which #{program}`
+	end
+	def settings_file_path
+		# FIXME: Clearly, wrong.
+		return home_dir
 	end
 end # Class << self
 end

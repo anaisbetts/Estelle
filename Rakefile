@@ -46,9 +46,14 @@ task :taglib do |t|
 #	sh "cd ext/taglib && make"
 end
 
+desc "Update missing tests"
+task :buildtests do |t|
+	Dir.glob("{lib}/**/*.rb").each {|x| sh "./build_unit_test #{x}"}
+end
+
 desc "Run unit tests"
 Rake::TestTask.new("test") do |t|
-	t.pattern = 'tests/*.rb'
+	t.pattern = 'tests/**/*.rb'
 	t.verbose = true
 	t.warning = true
 end

@@ -21,6 +21,7 @@
 $:.unshift File.join(File.dirname(__FILE__), "..", "..", "lib")
 
 # Ruby standard library
+require 'rubygems'
 require 'logger'
 require 'gettext'
 require 'pathname'
