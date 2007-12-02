@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: estelle 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-28 09:46-0800\n"
+"POT-Creation-Date: 2007-11-22 19:55-0800\n"
 "PO-Revision-Date: 2007-11-22 19:43-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,130 +15,130 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lib/library.rb:210
+#: lib/library.rb:163
 msgid "Failure processing %s"
 msgstr ""
 
-#: lib/main.rb:56
+#: lib/main.rb:55
 msgid ""
 "Only translate the word 'Soundtracks'|Soundtracks/<album>/<track> - <title> "
 "(<artist>).<ext>"
 msgstr ""
 
-#: lib/main.rb:61
+#: lib/main.rb:60
 msgid "Usage: Estelle [options]"
 msgstr ""
 
-#: lib/main.rb:64
+#: lib/main.rb:63
 msgid "Specific options:"
 msgstr ""
 
-#: lib/main.rb:66
+#: lib/main.rb:65
 msgid "--action type"
 msgstr ""
 
-#: lib/main.rb:67
+#: lib/main.rb:66
 msgid "Action to perform (one of 'copy', 'move', 'symlink')"
 msgstr ""
 
-#: lib/main.rb:71
+#: lib/main.rb:70
 msgid "--script [file]"
 msgstr ""
 
-#: lib/main.rb:71
+#: lib/main.rb:70
 msgid "Instead of performing the action, make a script"
 msgstr ""
 
-#: lib/main.rb:75
+#: lib/main.rb:74
 msgid "--library /path/to/music"
 msgstr ""
 
-#: lib/main.rb:76
+#: lib/main.rb:75
 msgid "Directory to recursively scan for music"
 msgstr ""
 
-#: lib/main.rb:80
+#: lib/main.rb:79
 msgid "--musicformat <format>"
 msgstr ""
 
-#: lib/main.rb:81
+#: lib/main.rb:80
 msgid "Format to rename music (see man page for details)"
 msgstr ""
 
-#: lib/main.rb:85
+#: lib/main.rb:84
 msgid "--soundtrackformat <format>"
 msgstr ""
 
-#: lib/main.rb:86
+#: lib/main.rb:85
 msgid "Format to rename soundtracks (see man page for details)"
 msgstr "Foo"
 
-#: lib/main.rb:90
+#: lib/main.rb:89
 msgid "--playlist file"
 msgstr ""
 
-#: lib/main.rb:91
+#: lib/main.rb:90
 msgid "Playlist to read for file list"
 msgstr ""
 
-#: lib/main.rb:95
+#: lib/main.rb:94
 msgid "Directory to put music in"
 msgstr ""
 
-#: lib/main.rb:99
+#: lib/main.rb:98
 msgid "Run the GUI version of this application"
 msgstr ""
 
-#: lib/main.rb:104
+#: lib/main.rb:103
 msgid "Common options:"
 msgstr ""
 
-#: lib/main.rb:106
+#: lib/main.rb:105
 msgid "Show this message"
 msgstr ""
 
-#: lib/main.rb:111
+#: lib/main.rb:110
 msgid "Run in debug mode (Extra messages)"
 msgstr ""
 
-#: lib/main.rb:115
+#: lib/main.rb:114
 msgid "Run verbosely"
 msgstr ""
 
-#: lib/main.rb:119
+#: lib/main.rb:118
 msgid "Show version"
 msgstr ""
 
-#: lib/main.rb:143
+#: lib/main.rb:142
 msgid "Missing parameter; see --help for more info"
 msgstr ""
 
-#: lib/main.rb:146
+#: lib/main.rb:145
 msgid "Invalid option; see --help for more info"
 msgstr ""
 
-#: lib/main.rb:183
+#: lib/main.rb:180
 msgid "%s%% complete"
 msgstr ""
 
-#: lib/main.rb:187
+#: lib/main.rb:184
 msgid "'%s' may be a soundtrack or compilation. Is it? (Y/n) "
 msgstr ""
 
-#: lib/main.rb:193
+#: lib/main.rb:191
 msgid "The tag '%s' has invalid characters; '%s' are not allowed"
 msgstr ""
 
-#: lib/main.rb:194
+#: lib/main.rb:192
 msgid ""
 "Please type a replacement or hit enter to replace with\n"
 "%s\n"
 msgstr ""
 
-#: lib/main.rb:198
+#: lib/main.rb:197
 msgid "Executing request..."
 msgstr ""
 
-#: lib/song.rb:105
+#: lib/song.rb:104
 msgid "(Unknown)"
 msgstr ""
