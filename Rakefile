@@ -54,10 +54,33 @@ Rake::TestTask.new("test") do |t|
 	t.warning = true
 end
 
+desc "Run Heckle on tests"
+task :heckle do |t|
+	# Collect a list of defined classes 
+	class_list = []
+	Dir.glob('lib/**/*.rb').each do |path| 
+		File.open(path) do |f| 
+			class_list += f.readlines.grep(/^class /) {|x| x.gsub(/class ([a-zA-Z]*).*$/, '\1') }
+		end
+	end
+
+	class_list.each do |x|
+		puts "Heckling #{x}"
+		sh "heckle -f #{x}"
+	end
+
+	#sh "echo cat " + Dir.glob("lib/**/*.rb").join(' ') + " | grep '^class ' | grep -v 'class <<' | sed -e 's/\\1/g' | xargs -I {} heckle -f"
+end
+
 desc "Run code coverage"
 task :coverage do |t|
-	sh "rcov -xrefs " + Dir.glob("test/**/*.rb").join(' ') + " 2>/dev/null"
+	sh "rcov -xrefs " + Dir.glob("test/**/*.rb").join(' ') + " 2>&1 >/dev/null"
 end
+
+desc "Flog code"
+task :flog do |t|
+	sh "flog " + Dir.glob("lib/**/*.rb").join(' ') + " | grep '^\\w'"
+end 
 
 # Default Action
 task :default => [
@@ -67,9 +90,10 @@ task :default => [
 	:expandify,
 ]
 
-task :alltests => [
+task :alltest => [
 	:test,
-	:coverage
+	:coverage,
+	:heckle
 ]
 
 

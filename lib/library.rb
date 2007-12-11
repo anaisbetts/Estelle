@@ -89,7 +89,10 @@ class MusicLibrary < Logger::Application
 			# Check to see if we can load this file
 			loader = nil
 			@taggers.each { |x| break if (loader = x).get_tags? current }
-			next unless loader
+			unless loader
+				log DEBUG, "No one supports '#{current.to_s}'!" 
+				next
+			end
 
 			yield(count.to_f / files.size) if (block_given? and (count % yield_every) == 0)
 
@@ -97,6 +100,8 @@ class MusicLibrary < Logger::Application
 				@tag_info[current][:path] = current
 				@tag_info[current][:md5sum] = md5sum
 				next
+			else
+				log DEBUG, "Couldn't get tags for '#{current.to_s}'!"
 			end
 
 			# Can't be loaded, delete it and move on

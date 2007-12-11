@@ -1,1 +1,0 @@
-/usr/bin/c++    -dynamiclib -headerpad_max_install_names  -o libtag_c.0.0.0.dylib -install_name /Users/paul/Desktop/Estelle-ruby/ext/taglib/bindings/c/libtag_c.0.dylib "CMakeFiles/tag_c.dir/tag_c.o" -L/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib -ltag -lz 

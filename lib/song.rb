@@ -26,6 +26,7 @@ require 'logger'
 require 'gettext'
 require 'pathname'
 require 'digest/md5'
+require 'utility'
 
 include GetText
 
@@ -70,7 +71,8 @@ class Song
 			@data[key] = Pathname.new val
 			@data[:ext] = @data[key].extname[1..25]
 		when :length
-			seconds = @data[key] = val.to_i
+			@data[key] = val
+			seconds = val.to_i
 			@data[:hours] = (seconds / 3600).to_s; seconds %= 3600
 			@data[:minutes] = (seconds / 60).to_s; seconds %= 60
 			@data[:seconds] = seconds.to_s

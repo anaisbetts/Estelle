@@ -43,7 +43,7 @@ class TagLibTagger < Logger::Application
 	end
 
 	def get_tags?(path)
-		@allowed ||= ['mpg', 'ogg', 'flac', 'mpc', 'mp3']
+		@allowed ||= ['mpg', 'ogg', 'flac', 'mpc', 'mp3', 'm4a']
 		return @allowed.include?(Pathname.new(path).extname.slice(1,10))
 	end
 

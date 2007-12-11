@@ -10,108 +10,87 @@ $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
 require 'execute_list' 
 
-class TestDebugList < Test::Unit::TestCase
-  def test_begin
-    raise NotImplementedError, 'Need to write test_begin'
-  end
-
-  def test_cp
-    raise NotImplementedError, 'Need to write test_cp'
-  end
-
-  def test_finish
-    raise NotImplementedError, 'Need to write test_finish'
-  end
-
-  def test_link
-    raise NotImplementedError, 'Need to write test_link'
-  end
-
-  def test_mkdirs
-    raise NotImplementedError, 'Need to write test_mkdirs'
-  end
-
-  def test_mv
-    raise NotImplementedError, 'Need to write test_mv'
-  end
-end
-
 class TestExecuteList < Test::Unit::TestCase
-  def test_begin
-    raise NotImplementedError, 'Need to write test_begin'
-  end
+	def setup
+		@el = ExecuteList.new
+	end
 
-  def test_cp
-    raise NotImplementedError, 'Need to write test_cp'
-  end
+	def test_begin
+		@el.begin ''
+	end
 
-  def test_finish
-    raise NotImplementedError, 'Need to write test_finish'
-  end
+	def test_cp
+		@el.begin ''
+	end
 
-  def test_link
-    raise NotImplementedError, 'Need to write test_link'
-  end
+	def test_link
+		raise NotImplementedError, 'Need to write test_link'
+	end
 
-  def test_mkdirs
-    raise NotImplementedError, 'Need to write test_mkdirs'
-  end
+	def test_mkdirs
+		raise NotImplementedError, 'Need to write test_mkdirs'
+	end
 
-  def test_mv
-    raise NotImplementedError, 'Need to write test_mv'
-  end
+	def test_mv
+		raise NotImplementedError, 'Need to write test_mv'
+	end
+
+	def test_finish
+		@el.begin ''
+		@el.finish
+	end
 end
 
 class TestShellScriptList < Test::Unit::TestCase
-  def test_begin
-    raise NotImplementedError, 'Need to write test_begin'
-  end
+	def test_begin
+		raise NotImplementedError, 'Need to write test_begin'
+	end
 
-  def test_cp
-    raise NotImplementedError, 'Need to write test_cp'
-  end
+	def test_cp
+		raise NotImplementedError, 'Need to write test_cp'
+	end
 
-  def test_finish
-    raise NotImplementedError, 'Need to write test_finish'
-  end
+	def test_finish
+		raise NotImplementedError, 'Need to write test_finish'
+	end
 
-  def test_link
-    raise NotImplementedError, 'Need to write test_link'
-  end
+	def test_link
+		raise NotImplementedError, 'Need to write test_link'
+	end
 
-  def test_mkdirs
-    raise NotImplementedError, 'Need to write test_mkdirs'
-  end
+	def test_mkdirs
+		raise NotImplementedError, 'Need to write test_mkdirs'
+	end
 
-  def test_mv
-    raise NotImplementedError, 'Need to write test_mv'
-  end
+	def test_mv
+		raise NotImplementedError, 'Need to write test_mv'
+	end
 end
 
 class TestTreeModelBuilderList < Test::Unit::TestCase
-  def test_begin
-    raise NotImplementedError, 'Need to write test_begin'
-  end
+	def test_begin
+		raise NotImplementedError, 'Need to write test_begin'
+	end
 
-  def test_cp
-    raise NotImplementedError, 'Need to write test_cp'
-  end
+	def test_cp
+		raise NotImplementedError, 'Need to write test_cp'
+	end
 
-  def test_finish
-    raise NotImplementedError, 'Need to write test_finish'
-  end
+	def test_finish
+		raise NotImplementedError, 'Need to write test_finish'
+	end
 
-  def test_link
-    raise NotImplementedError, 'Need to write test_link'
-  end
+	def test_link
+		raise NotImplementedError, 'Need to write test_link'
+	end
 
-  def test_mkdirs
-    raise NotImplementedError, 'Need to write test_mkdirs'
-  end
+	def test_mkdirs
+		raise NotImplementedError, 'Need to write test_mkdirs'
+	end
 
-  def test_mv
-    raise NotImplementedError, 'Need to write test_mv'
-  end
+	def test_mv
+		raise NotImplementedError, 'Need to write test_mv'
+	end
 end
 
 # Number of errors detected: 28

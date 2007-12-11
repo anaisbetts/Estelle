@@ -8,33 +8,49 @@ require 'test/unit' unless defined? $ZENTEST and $ZENTEST
 require 'song' 
 
 class TestSong < Test::Unit::TestCase
-  def test_class_sub_table
-    raise NotImplementedError, 'Need to write test_class_sub_table'
-  end
+	def setup
+		@ts = Song.new
+	end
 
-  def test_class_sub_table_equals
-    raise NotImplementedError, 'Need to write test_class_sub_table_equals'
-  end
+	def test_class_sub_table_equals
+		Song.sub_table = {:foo => 'bar'}
+		assert_equal({:foo => 'bar'}, Song.sub_table)
+	end
 
-  def test_checked_tag
-    raise NotImplementedError, 'Need to write test_checked_tag'
-  end
+	def test_checked_tag
+		@ts[:test] = 'foo'
+		assert_equal('bar', @ts.checked_tag(:test, /oo/, lambda {|x| 'bar'}))
+		assert_equal('foo', @ts.checked_tag(:test, /oz/, lambda {|x| 'bar'}))
+	end
 
-  def test_get_canonical_artist
-    raise NotImplementedError, 'Need to write test_get_canonical_artist'
-  end
+	def test_get_canonical_artist
+		@ts[:artist] = 'Jim, Bob; Ned, featuring Sam'
+		assert_equal("Bob,Jim,Ned,Sam", @ts.get_canonical_artist)
+	end
 
-  def test_index
-    raise NotImplementedError, 'Need to write test_index'
-  end
+	def test_index_equals
+		@ts[:ext] = 'foo'
+		assert_nil @ts[:ext]
 
-  def test_index_equals
-    raise NotImplementedError, 'Need to write test_index_equals'
-  end
+		@ts[:path] = "/usr/bin/test.txt"
+		assert_equal 'txt', @ts[:ext] 
 
-  def test_to_hash
-    raise NotImplementedError, 'Need to write test_to_hash'
-  end
+		@ts[:length] = '37801'
+		assert_equal '37801', @ts[:length]
+		assert_equal '10', @ts[:hours]
+		assert_equal '30', @ts[:minutes]
+		assert_equal '1', @ts[:seconds]
+
+		@ts[:artist] = '    Bob, Adam'
+		assert_equal 'Bob, Adam', @ts[:artist]
+		assert_equal 'Adam,Bob', @ts[:canonical_artist]
+	end
+
+	def test_to_hash
+		@ts[:foo] = 'bar'
+		@ts[:baz] = 'bamf'
+		assert_equal({:foo => 'bar', :baz => 'bamf'}, @ts.to_hash)
+	end
 end
 
 # Number of errors detected: 8

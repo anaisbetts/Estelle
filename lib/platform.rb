@@ -26,6 +26,8 @@ require 'config'
 require 'rubygems'
 require 'logger'
 require 'gettext'
+require 'pathname'
+require 'fileutils'
 
 include GetText
 
@@ -44,7 +46,10 @@ class << self
 		return 'C:\temp' if os == :windows
 
 		homedir = (ENV["HOME"] ? ENV["HOME"] : ".")
-		File.join(homedir, ".estelle")
+		ret = File.join(homedir, ".estelle")
+
+		FileUtils.mkdir_p(ret) unless Pathname.new(ret).exist?
+		return ret
 	end
 
 	def which(program)
