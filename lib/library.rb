@@ -36,10 +36,6 @@ include GetText
 
 DefaultTaggerPath = File.join(File.dirname(__FILE__), 'taggers')
 class MusicLibrary < Logger::Application
-	@taggers = nil
-	@tag_info = nil
-	@album_info = nil
-	@md5_index = nil
 
 	public 
 	attr_writer :is_soundtrack
@@ -47,6 +43,11 @@ class MusicLibrary < Logger::Application
 	def initialize
 		super(self.class.to_s()) 
 		self.level = $logging_level
+
+		@taggers = nil
+		@tag_info = nil
+		@album_info = nil
+		@md5_index = nil
 	end
 
 	def clear
@@ -54,7 +55,7 @@ class MusicLibrary < Logger::Application
 		@album_info = nil
 	end
 
-	def empty?; not @tag_info or @tag_info.empty?; end
+	def empty?; (not @tag_info) or @tag_info.empty?; end
 
 	def size; (@tag_info ? @tag_info.size : 0); end
 

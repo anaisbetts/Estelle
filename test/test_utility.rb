@@ -8,32 +8,21 @@ $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
 require 'utility' 
 
-class TestTask < Test::Unit::TestCase
-  def test_call
-    raise NotImplementedError, 'Need to write test_call'
-  end
 
-  def test_invoke
-    raise NotImplementedError, 'Need to write test_invoke'
-  end
+class TestUtility < Test::Unit::TestCase
+	def test_escaped_path
+		assert_equal('/test/Path\ Containing\ Spaces', escaped_path("/test/Path Containing Spaces"))
+	end
 
-  def test_params
-    raise NotImplementedError, 'Need to write test_params'
-  end
+	def test_filelist_from_root
+		# TODO: This isn't a very thorough test
+		file_dir = File.join(File.dirname(__FILE__), 'files')
+		assert_equal(3633, filelist_from_root(file_dir).size)
+	end
+
+	def test_super_chomp
+		assert_equal("chomp", super_chomp("   chomp"))
+		assert_equal("chomp", super_chomp("   chomp 	"))
+		assert_equal("chomp", super_chomp("chomp   		"))
+	end
 end
-
-class TestTaskQueue < Test::Unit::TestCase
-  def test_clear_and_halt
-    raise NotImplementedError, 'Need to write test_clear_and_halt'
-  end
-
-  def test_pause
-    raise NotImplementedError, 'Need to write test_pause'
-  end
-
-  def test_start
-    raise NotImplementedError, 'Need to write test_start'
-  end
-end
-
-# Number of errors detected: 8

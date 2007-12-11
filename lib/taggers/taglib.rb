@@ -112,6 +112,12 @@ end
 class File
 
 	def initialize(p)
+		# Init variables so we don't get warnings on test
+		@path = nil
+		@file = nil
+		@tag = nil
+		@audio = nil
+
 		@path = p
 		if not @path
 			raise BadPath.new

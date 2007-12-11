@@ -22,6 +22,7 @@ $:.unshift File.join(File.dirname(__FILE__), '..')
 $:.unshift File.dirname(__FILE__)
 
 # Ruby standard library
+require 'rubygems'
 require 'logger'
 require 'gettext'
 require 'pathname'
@@ -33,6 +34,8 @@ require 'song'
 require 'taglib'
 
 include GetText
+
+$logging_level ||= ($DEBUG ? Logger::DEBUG : Logger::ERROR)
 
 class TagLibTagger < Logger::Application
 	include Singleton
@@ -58,7 +61,7 @@ class TagLibTagger < Logger::Application
 		begin
 			f = TagLib::File.new(path.to_s)
 		rescue Exception
-			#log DEBUG, "Couldn't read #{path.to_s}"
+			log DEBUG, "Couldn't read #{path.to_s}"
 			return nil
 		end
 

@@ -19,8 +19,8 @@ class TestSong < Test::Unit::TestCase
 
 	def test_checked_tag
 		@ts[:test] = 'foo'
-		assert_equal('bar', @ts.checked_tag(:test, /oo/, lambda {|x| 'bar'}))
-		assert_equal('foo', @ts.checked_tag(:test, /oz/, lambda {|x| 'bar'}))
+		assert_equal('bar', @ts.checked_tag(:test, /oo/, lambda {|x,y,z| 'bar'}))
+		assert_equal('foo', @ts.checked_tag(:test, /oz/, lambda {|x,y,z| 'bar'}))
 	end
 
 	def test_get_canonical_artist
@@ -52,5 +52,3 @@ class TestSong < Test::Unit::TestCase
 		assert_equal({:foo => 'bar', :baz => 'bamf'}, @ts.to_hash)
 	end
 end
-
-# Number of errors detected: 8

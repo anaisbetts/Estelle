@@ -45,8 +45,8 @@ class Song
 		FeaturingList.each { |x| s.sub!(x, ',') }
 
 		# Then, split on any sort of punctuation
-		artists = s.split(/[;,:\|-]/)
-		artists.delete_if { |x| x.chomp.empty? }
+		artists = s.split(/[;,:\|-]/).collect {|x| super_chomp(x)}
+		artists.delete_if { |x| super_chomp(x).empty? }
 		@data[:canonical_artist] = (artists.sort.join ',')
 	end
 
@@ -91,6 +91,7 @@ class Song
 	def checked_tag(key, invalid_chars, checking_proc)
 		@@sub_table ||= {}
 		data = @data[key] || "<#{key}>"		# Write the original key back
+		return data unless data =~ invalid_chars
 
 		# Switch out the data with a replacement if we've got one
 		data = @@sub_table[data] || data
