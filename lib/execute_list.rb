@@ -91,7 +91,6 @@ class TreeModelBuilderList
 		# Find the last existing one
 		to_start = (Platform.os() == :windows ? (lastitem = items.shift()) : '/')
 		buf = Pathname.new(to_start)
-		p "At start, buf = #{buf}"
 		while(items.size > 0 and @cache[buf.to_s])
 			nextitem = buf.clone.join(items[0])
 			print "nextitem = #{nextitem}\n"

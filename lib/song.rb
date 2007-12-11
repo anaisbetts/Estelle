@@ -99,7 +99,6 @@ class Song
 		# Prompt the user for a replacement
 		default = data.gsub(invalid_chars, ' ')
 		repl = data
-		puts checking_proc
 		while repl =~ invalid_chars
 			repl = checking_proc.call(repl.clone, invalid_chars, default)
 			repl = default if repl.chomp.empty?
