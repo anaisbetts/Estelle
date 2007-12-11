@@ -122,7 +122,3 @@ def filelist_from_root(path)
 
 	list
 end
-
-def super_chomp(s)
-	s.gsub(/\W*$/, '').gsub!(/^\W*(\w.*)$/, '\1') || ''
-end

@@ -65,7 +65,6 @@ class Song
 	def []=(key, val)
 		case key
 		when :ext
-			# This is a generated property - don't let anyone set it
 			nil
 		when :path
 			@data[key] = Pathname.new val
@@ -81,10 +80,10 @@ class Song
 			h = @data[:hours].to_i; m = @data[:minutes].to_i; s = @data[:seconds].to_i
 			@data[:length] = (h*3600+m*60+s).to_s
 		when :artist
-			@data[key] = super_chomp(val)
+			@data[key] = val
 			@data.delete :canonical_artist if @data.has_key? :canonical_artist
 		else 
-			@data[key] = super_chomp(val)
+			@data[key] = val
 		end
 	end
 
