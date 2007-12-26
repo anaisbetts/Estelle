@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,5 +27,5 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1/id3v1tag.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1/id3v1genres.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1/id3v1tag.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1/id3v1genres.h")

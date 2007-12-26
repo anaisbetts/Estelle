@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/flac
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib/taglib/flac
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,5 +27,5 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/flac/flacfile.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/flac/flacproperties.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/flac/flacfile.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/flac/flacproperties.h")

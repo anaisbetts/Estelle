@@ -49,11 +49,21 @@ end
 def filelist_from_root(path)
 	list = []
 	d = Pathname.new path
-	d.find { |x| list << x.to_s if x.file? }
+	d.find { |x| list << x.to_s if x.file? or x.symlink? }
 
 	list
 end
 
 def super_chomp(s)
 	s.gsub(/\W*$/, '').gsub!(/^\W*(\w.*)$/, '\1') || ''
+end
+
+
+def dump_stacks
+	fork do
+		ObjectSpace.each_object(Thread) do |th|
+			th.raise Exception, "Stack Dump" unless Thread.current == th
+		end
+		raise Exception, "Stack Dump"
+	end
 end

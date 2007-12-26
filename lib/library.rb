@@ -31,14 +31,18 @@ require 'zlib'
 # Estelle 
 require 'platform'
 require 'execute_list'
+require 'song'
 
 include GetText
 
+$logging_level ||= Logger::ERROR
+
 DefaultTaggerPath = File.join(File.dirname(__FILE__), 'taggers')
-class MusicLibrary < Logger::Application
+class Library < Logger::Application
 
 	public 
 	attr_writer :is_soundtrack
+	attr_reader :taggers
 
 	def initialize
 		super(self.class.to_s()) 
@@ -68,10 +72,11 @@ class MusicLibrary < Logger::Application
 		@tag_info = {}
 		log INFO, "Processing #{files.size} files..."
 		count = 0
-		yield_every = (files.size * progress_rate).to_i
+		yield_every = (files.length * progress_rate).to_i
+		yield_every = 1 if (yield_every == 0)
 		files.each do |current|
 			count += 1
-			yield(count.to_f / files.size) if (block_given? and (count % yield_every) == 0)
+			yield(count.to_f / files.length) if (block_given? and (count % yield_every) == 0)
 			#log DEBUG, 'Reading %s..' % current
 			
 			# First, see if we've already scanned this file before (save some time
@@ -83,6 +88,7 @@ class MusicLibrary < Logger::Application
 					next
 				end
 			rescue
+				log DEBUG, "Couldn't open file!"
 				@tag_info.delete current
 				next
 			end
@@ -108,6 +114,8 @@ class MusicLibrary < Logger::Application
 			# Can't be loaded, delete it and move on
 			@tag_info.delete current
 		end 
+
+		File.open("fixture.yaml", 'w') {|x| x.puts self.to_yaml}
 
 		save_cache
 
@@ -223,10 +231,12 @@ class MusicLibrary < Logger::Application
 	end
 
 	def load_taggers(*paths)
-		# Load the defaults, then the ones specified in the param
 		paths.each do |x|
 			log DEBUG, "Trying to load #{x}"
-			Pathname.new(x).each_entry { |y| require File.join(x,y) if y.extname == '.rb' } 
+			Pathname.new(x).each_entry do |y| 
+				file = File.join(x,y) 
+				require file if y.extname == '.rb'
+			end
 		end
 
 		# Now reflect through the objects and find ones that match

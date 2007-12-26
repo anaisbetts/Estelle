@@ -1,0 +1,429 @@
+--- !ruby/object:Library 
+album_info: 
+appname: Library
+is_soundtrack: 
+  Office Space: true
+level: 3
+log: !ruby/object:Logger 
+  default_formatter: !ruby/object:Logger::Formatter 
+    datetime_format: 
+  formatter: 
+  level: 3
+  logdev: !ruby/object:Logger::LogDevice 
+    dev: &id020 !ruby/object:IO {}
+
+    filename: 
+    mutex: !ruby/object:Logger::LogDevice::LogDeviceMutex 
+      mon_count: 0
+      mon_entering_queue: []
+
+      mon_owner: 
+      mon_waiting_queue: []
+
+    shift_age: 
+    shift_size: 
+  progname: Library
+md5_index: 
+  80f4ce021ed3b4d6167365cb82f4b045: &id007 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/4 - One More Cup of Coffee.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "4"
+      :title: One More Cup of Coffee
+      :minutes: "0"
+      :md5sum: 80f4ce021ed3b4d6167365cb82f4b045
+  7688e1ad58f87d9df5ff284147f6b2a9: &id010 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Lisa Stone
+      :path: !ruby/object:Pathname 
+        path: fixture/5 - 9-5 (Lisa Stone).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "5"
+      :title: 9-5
+      :minutes: "0"
+      :md5sum: 7688e1ad58f87d9df5ff284147f6b2a9
+  aa8c8dddd1513fe4b1c59e03a5b92be6: &id005 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/3 - Mozambique.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "3"
+      :title: Mozambique
+      :minutes: "0"
+      :md5sum: aa8c8dddd1513fe4b1c59e03a5b92be6
+  9ef40f7542dfe5f0915424cb736f0f2d: &id019 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/9 - Sara.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "9"
+      :title: Sara
+      :minutes: "0"
+      :md5sum: 9ef40f7542dfe5f0915424cb736f0f2d
+  2f68bc0d1ffadaca9bd2a341b1dd83f6: &id018 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Blackman/Destruct/Icon
+      :path: !ruby/object:Pathname 
+        path: fixture/8 - Home (Blackman Destruct Icon).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "8"
+      :title: Home
+      :minutes: "0"
+      :md5sum: 2f68bc0d1ffadaca9bd2a341b1dd83f6
+  568e75c497b5dc2a8146b5fbb22f502d: &id017 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Slum Village
+      :path: !ruby/object:Pathname 
+        path: fixture/2 - Get Dis Money (Slum Village).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "2"
+      :title: Get Dis Money
+      :minutes: "0"
+      :md5sum: 568e75c497b5dc2a8146b5fbb22f502d
+  be66f4b7ab63558ba88ac1b8d6d68d32: &id003 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/7 - Romance in Durango.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "7"
+      :title: Romance in Durango
+      :minutes: "0"
+      :md5sum: be66f4b7ab63558ba88ac1b8d6d68d32
+  e082d6261c7820d130b4596a6f996de6: &id009 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/8 - Black Diamond Bay.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "8"
+      :title: Black Diamond Bay
+      :minutes: "0"
+      :md5sum: e082d6261c7820d130b4596a6f996de6
+  2e2c37dbcd970249e8f5cd2df47dc416: &id013 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Ice Cube
+      :path: !ruby/object:Pathname 
+        path: fixture/6 - Down for Whatever (Ice Cube).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "6"
+      :title: Down for Whatever
+      :minutes: "0"
+      :md5sum: 2e2c37dbcd970249e8f5cd2df47dc416
+  6adc825e1f907409cd80864befd979ee: &id006 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Geto Boys
+      :path: !ruby/object:Pathname 
+        path: fixture/10 - Still (Geto Boys).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "10"
+      :title: Still
+      :minutes: "0"
+      :md5sum: 6adc825e1f907409cd80864befd979ee
+  c6be5fa6dd0c058eb57ee8337d1df4cc: &id002 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/2 - Isis.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "2"
+      :title: Isis
+      :minutes: "0"
+      :md5sum: c6be5fa6dd0c058eb57ee8337d1df4cc
+  3d652ba7dcc3e821578001ecc75df964: &id014 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Junior Reid
+      :path: !ruby/object:Pathname 
+        path: fixture/4 - Big Boss Man (Junior Reid).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "4"
+      :title: Big Boss Man
+      :minutes: "0"
+      :md5sum: 3d652ba7dcc3e821578001ecc75df964
+  4902df695b24a4d833332dcdf2af2583: &id015 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/6 - Joey.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "6"
+      :title: Joey
+      :minutes: "0"
+      :md5sum: 4902df695b24a4d833332dcdf2af2583
+  e5d3244a07d6e6570f33ad644841ad64: &id016 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Scarface
+      :path: !ruby/object:Pathname 
+        path: fixture/9 - No Tears (Scarface).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "9"
+      :title: No Tears
+      :minutes: "0"
+      :md5sum: e5d3244a07d6e6570f33ad644841ad64
+  fc40b681854b426f2ea1479b7d48a48d: &id012 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/5 - Oh, Sister.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "5"
+      :title: Oh, Sister
+      :minutes: "0"
+      :md5sum: fc40b681854b426f2ea1479b7d48a48d
+  6e95f9d2a78150b49388f5e98189ecb8: &id011 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Geto Boys
+      :path: !ruby/object:Pathname 
+        path: fixture/7 - Damn It Feels Good to Be a Gangsta (Geto Boys).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "7"
+      :title: Damn It Feels Good to Be a Gangsta
+      :minutes: "0"
+      :md5sum: 6e95f9d2a78150b49388f5e98189ecb8
+  9ebd294a8611a58aea7537b0cd0fc82a: &id008 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Biz Markie/Canibus
+      :path: !ruby/object:Pathname 
+        path: fixture/1 - Shove This Jay-Oh-Bee (Biz Markie Canibus).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "1"
+      :title: Shove This Jay-Oh-Bee
+      :minutes: "0"
+      :md5sum: 9ebd294a8611a58aea7537b0cd0fc82a
+  c6501e3842495a2ebe4dea373f48a080: &id004 !ruby/object:Song 
+    data: 
+      :album: Office Space
+      :artist: Kool Keith
+      :path: !ruby/object:Pathname 
+        path: fixture/3 - Get off My Elevator (Kool Keith).mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1999"
+      :genre: Soundtrack
+      :hours: "0"
+      :track: "3"
+      :title: Get off My Elevator
+      :minutes: "0"
+      :md5sum: c6501e3842495a2ebe4dea373f48a080
+  804a15e350dd05b0ee31d94d4ca147a1: &id001 !ruby/object:Song 
+    data: 
+      :album: Desire
+      :artist: Bob Dylan
+      :path: !ruby/object:Pathname 
+        path: fixture/1 - Hurricane.mp3
+      :bitrate: "29"
+      :channels: "1"
+      :ext: mp3
+      :seconds: "2"
+      :samplerate: "22050"
+      :length: "2"
+      :year: "1975"
+      :genre: Classic Rock
+      :hours: "0"
+      :track: "1"
+      :title: Hurricane
+      :minutes: "0"
+      :md5sum: 804a15e350dd05b0ee31d94d4ca147a1
+tag_info: 
+  fixture/1 - Hurricane.mp3: *id001
+  fixture/2 - Isis.mp3: *id002
+  fixture/7 - Romance in Durango.mp3: *id003
+  fixture/3 - Get off My Elevator (Kool Keith).mp3: *id004
+  fixture/3 - Mozambique.mp3: *id005
+  fixture/10 - Still (Geto Boys).mp3: *id006
+  fixture/4 - One More Cup of Coffee.mp3: *id007
+  fixture/1 - Shove This Jay-Oh-Bee (Biz Markie Canibus).mp3: *id008
+  fixture/8 - Black Diamond Bay.mp3: *id009
+  fixture/5 - 9-5 (Lisa Stone).mp3: *id010
+  fixture/7 - Damn It Feels Good to Be a Gangsta (Geto Boys).mp3: *id011
+  fixture/5 - Oh, Sister.mp3: *id012
+  fixture/6 - Down for Whatever (Ice Cube).mp3: *id013
+  fixture/4 - Big Boss Man (Junior Reid).mp3: *id014
+  fixture/6 - Joey.mp3: *id015
+  fixture/9 - No Tears (Scarface).mp3: *id016
+  fixture/2 - Get Dis Money (Slum Village).mp3: *id017
+  fixture/8 - Home (Blackman Destruct Icon).mp3: *id018
+  fixture/9 - Sara.mp3: *id019
+taggers: 
+- !ruby/object:TagLibTagger 
+  appname: TagLibTagger
+  level: 3
+  log: !ruby/object:Logger 
+    default_formatter: !ruby/object:Logger::Formatter 
+      datetime_format: 
+    formatter: 
+    level: 3
+    logdev: !ruby/object:Logger::LogDevice 
+      dev: *id020
+      filename: 
+      mutex: !ruby/object:Logger::LogDevice::LogDeviceMutex 
+        mon_count: 0
+        mon_entering_queue: []
+
+        mon_owner: 
+        mon_waiting_queue: []
+
+      shift_age: 
+      shift_size: 
+    progname: TagLibTagger

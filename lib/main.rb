@@ -174,7 +174,7 @@ class Estelle < Logger::Application
 			exit
 		end
 
-		library = MusicLibrary.new
+		library = Library.new
 
 		load_settings(library)
 

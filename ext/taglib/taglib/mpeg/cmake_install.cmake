@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,13 +27,13 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/mpegfile.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/mpegproperties.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/mpegheader.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/xingheader.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/mpegfile.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/mpegproperties.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/mpegheader.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/xingheader.h")
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v1/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)

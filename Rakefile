@@ -6,7 +6,7 @@ require 'rake/contrib/rubyforgepublisher'
 require 'rake/clean'
 require 'rake/rdoctask'                                                                                                                        
 require 'rake/testtask'
-require 'spec'
+#require 'spec'
 
 # Load other build files
 Dir.glob("build/*.rake").each {|x| load x}
@@ -18,7 +18,7 @@ PKG_VERSION   = "0.1"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 # Fixed up clean section to pick up extensions
-CLEAN = FileList["**/*~", "**/*.bak", "**/core", 'ext/taglib/**/*.o', 'ext/**/*.dll', 'ext/**/*.so', 'ext/**/*.dylib', 'bin/*', 'data/*']
+CLEAN = FileList["**/*~", "**/*.bak", "**/core", 'ext/taglib/**/*.o', 'ext/**/*.dll', 'ext/**/*.so', 'ext/**/*.dylib', 'bin/*']
 CLOBBER = FileList['ext/**/Makefile', 'ext/**/CMakeCache.txt']
 
 

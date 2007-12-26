@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,13 +27,13 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/taglib.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tstring.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tlist.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tlist.tcc")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tstringlist.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tbytevector.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tbytevectorlist.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tfile.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tmap.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/tmap.tcc")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/taglib.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tstring.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tlist.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tlist.tcc")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tstringlist.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tbytevector.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tbytevectorlist.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tfile.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tmap.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/tmap.tcc")

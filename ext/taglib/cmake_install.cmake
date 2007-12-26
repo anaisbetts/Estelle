@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,14 +27,14 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
-FILE(INSTALL DESTINATION "/usr/local/lib/pkgconfig" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib.pc")
-FILE(INSTALL DESTINATION "/usr/local/bin" TYPE PROGRAM FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib-config")
+FILE(INSTALL DESTINATION "/usr/local/lib/pkgconfig" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib.pc")
+FILE(INSTALL DESTINATION "/usr/local/bin" TYPE PROGRAM FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib-config")
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/tests/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/examples/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/bindings/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/tests/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/examples/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/bindings/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 IF(CMAKE_INSTALL_COMPONENT)
@@ -42,7 +42,7 @@ IF(CMAKE_INSTALL_COMPONENT)
 ELSE(CMAKE_INSTALL_COMPONENT)
   SET(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 ENDIF(CMAKE_INSTALL_COMPONENT)
-FILE(WRITE "/Users/paul/Desktop/Estelle-ruby/ext/taglib/${CMAKE_INSTALL_MANIFEST}" "")
+FILE(WRITE "/Users/paul/Estelle-ruby/ext/taglib/${CMAKE_INSTALL_MANIFEST}" "")
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  FILE(APPEND "/Users/paul/Desktop/Estelle-ruby/ext/taglib/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  FILE(APPEND "/Users/paul/Estelle-ruby/ext/taglib/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 ENDFOREACH(file)

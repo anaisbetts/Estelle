@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,10 +27,10 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/attachedpictureframe.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/commentsframe.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/generalencapsulatedobjectframe.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/relativevolumeframe.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/textidentificationframe.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/uniquefileidentifierframe.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/unknownframe.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/attachedpictureframe.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/commentsframe.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/generalencapsulatedobjectframe.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/relativevolumeframe.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/textidentificationframe.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/uniquefileidentifierframe.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/id3v2/frames/unknownframe.h")

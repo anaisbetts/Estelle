@@ -45,3 +45,16 @@ class DummyTagger
 		return (Song.new 'test' + id.to_s, 'testalbum' + (id % 13).to_s, 'testartist' + (id % 200).to_s)
 	end
 end
+
+# This is here to test our loader
+class Decoy
+	def get_tags?(path)
+		throw "Not a real tagger!"
+	end
+end
+
+class CompletelyUnrelated
+	def foo
+		"bar"
+	end
+end

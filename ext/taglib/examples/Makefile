@@ -34,10 +34,10 @@ RM = /opt/local/bin/cmake -E remove -f
 CMAKE_EDIT_COMMAND = /opt/local/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/paul/Desktop/Estelle-ruby/ext/taglib
+CMAKE_SOURCE_DIR = /Users/paul/Estelle-ruby/ext/taglib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/paul/Desktop/Estelle-ruby/ext/taglib
+CMAKE_BINARY_DIR = /Users/paul/Estelle-ruby/ext/taglib
 
 # Include the progress variables for this target.
 include CMakeFiles/progress.make
@@ -48,7 +48,7 @@ include CMakeFiles/progress.make
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib/examples && /opt/local/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	cd /Users/paul/Estelle-ruby/ext/taglib/examples && /opt/local/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 
 # Special rule for the target edit_cache
 edit_cache/fast: edit_cache
@@ -56,17 +56,17 @@ edit_cache/fast: edit_cache
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -P cmake_install.cmake
+	cd /Users/paul/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -P cmake_install.cmake
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -P cmake_install.cmake
+	cd /Users/paul/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -P cmake_install.cmake
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	cd /Users/paul/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 
 # Special rule for the target install/local
 install/local/fast: install/local
@@ -81,31 +81,31 @@ list_install_components/fast: list_install_components
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	cd /Users/paul/Estelle-ruby/ext/taglib/examples && /opt/local/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib && $(CMAKE_COMMAND) -E cmake_progress_start /Users/paul/Desktop/Estelle-ruby/ext/taglib/CMakeFiles $(CMAKE_ALL_PROGRESS)
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/paul/Desktop/Estelle-ruby/ext/taglib/CMakeFiles 0
+	cd /Users/paul/Estelle-ruby/ext/taglib && $(CMAKE_COMMAND) -E cmake_progress_start /Users/paul/Estelle-ruby/ext/taglib/CMakeFiles $(CMAKE_ALL_PROGRESS)
+	cd /Users/paul/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/paul/Estelle-ruby/ext/taglib/CMakeFiles 0
 
 # The main clean target
 clean:
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/clean
+	cd /Users/paul/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/clean
 
 # The main clean target
 clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /Users/paul/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /Users/paul/Estelle-ruby/ext/taglib && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
 
 # clear depends
 depend:
@@ -132,5 +132,5 @@ help::
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/paul/Desktop/Estelle-ruby/ext/taglib && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/paul/Estelle-ruby/ext/taglib && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 

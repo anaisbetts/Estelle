@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib/taglib
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,22 +27,22 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
-FILE(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY PROPERTIES VERSION 1.4.0 SOVERSION 1 FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/libtag.dylib")
+FILE(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY PROPERTIES VERSION 1.4.0 SOVERSION 1 FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/libtag.dylib")
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" MATCHES "^()$")
   EXECUTE_PROCESS(COMMAND install_name_tool
     -id "/usr/local/lib/libtag.1.dylib"
     "$ENV{DESTDIR}/usr/local/lib/libtag.1.dylib")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" MATCHES "^()$")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/tag.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/fileref.h")
-FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/audioproperties.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/tag.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/fileref.h")
+FILE(INSTALL DESTINATION "/usr/local/include/taglib" TYPE FILE FILES "/Users/paul/Estelle-ruby/ext/taglib/taglib/audioproperties.h")
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/toolkit/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpeg/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/ogg/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/flac/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/ape/cmake_install.cmake")
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/taglib/mpc/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/toolkit/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/mpeg/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/ogg/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/flac/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/ape/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/taglib/mpc/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)

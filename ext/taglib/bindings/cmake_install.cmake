@@ -1,4 +1,4 @@
-# Install script for directory: /Users/paul/Desktop/Estelle-ruby/ext/taglib/bindings
+# Install script for directory: /Users/paul/Estelle-ruby/ext/taglib/bindings
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,6 +29,6 @@ ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/Users/paul/Desktop/Estelle-ruby/ext/taglib/bindings/c/cmake_install.cmake")
+  INCLUDE("/Users/paul/Estelle-ruby/ext/taglib/bindings/c/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)

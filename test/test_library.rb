@@ -3,14 +3,22 @@ $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
 require 'library' 
 require 'yaml'
+require 'mocha'
 
-class TestMusicLibrary < Test::Unit::TestCase
+TestDir = File.dirname(__FILE__)
+
+class TestLibrary < Test::Unit::TestCase
 	def test_create_action_list
-		raise NotImplementedError, 'Need to write test_create_action_list'
+		ml = YAML::load(File.read(File.join(TestDir, 'test_library_fixture.yaml')))
+                list = ml.create_action_list('.', "<artist>/<album>/<track> - <title>.<ext>", 
+		                      "Soundtracks/<album>/<track> - <title> (<artist>).<ext>") do |tag,invalid,defparm|
+			defparm
+		end
+		assert list
 	end
 
 	def test_empty_eh
-		ml = MusicLibrary.new
+		ml = Library.new
 		assert ml.empty?
 	end
 
@@ -19,19 +27,21 @@ class TestMusicLibrary < Test::Unit::TestCase
 	end
 
 	def test_find_soundtracks
-		raise NotImplementedError, 'Need to write test_find_soundtracks'
-	end
-
-	def test_is_soundtrack_equals
-		raise NotImplementedError, 'Need to write test_is_soundtrack_equals'
+		ml = YAML::load(File.read(File.join(TestDir, 'test_library_fixture.yaml')))
+		ml.find_soundtracks do |x|
+			assert_equal("Office Space", x)
+		end
 	end
 
 	def test_load_taggers
-		raise NotImplementedError, 'Need to write test_load_taggers'
-	end
+		ml = Library.new
+		ml.load_taggers(File.join(TestDir, 'mocks'))
 
-	def test_size
-		raise NotImplementedError, 'Need to write test_size'
+		assert ml.taggers
+
+		# FIXME: For some reason, autotest convinces the regular tagger to load
+		# I don't know why
+		#assert_equal ml.taggers.length, 1
 	end
 end
 
