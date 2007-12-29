@@ -31,7 +31,7 @@ require 'yaml'
 
 include GetText
 
-class EstelleSettings
+class Settings
 	public
 	attr :soundtrack_table
 	attr :tagsubst_table
@@ -41,7 +41,7 @@ class EstelleSettings
 		@tagsubst_table = {}
 	end
 
-	def EstelleSettings::load(path)
+	def Settings::load(path)
 		begin
 			YAML::load(File.read(path))
 		rescue
@@ -57,7 +57,7 @@ end
 def load_settings(library)
 	# Load our settings
 	# FIXME: I am retarded
-	@settings = EstelleSettings.load(Platform.settings_file_path) || EstelleSettings.new
+	@settings = Settings.load(Platform.settings_file_path) || Settings.new
 	Song.sub_table = @settings.tagsubst_table
 	library.is_soundtrack = @settings.soundtrack_table
 end
