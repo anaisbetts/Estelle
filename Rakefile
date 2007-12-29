@@ -61,15 +61,16 @@ task :heckle do |t|
 	Dir.glob('lib/**/*.rb').each do |path| 
 		File.open(path) do |f| 
 			class_list += f.readlines.grep(/^class /) {|x| x.gsub(/class ([a-zA-Z]*).*$/, '\1') }
+			class_list.delete_if {|x| x == ''}
 		end
 	end
 
 	class_list.each do |x|
-		puts "Heckling #{x}"
-		sh "heckle -f #{x}"
+		STDERR.puts "Heckling #{x}"
+		system("heckle -f #{x}")
 	end
 
-	#sh "echo cat " + Dir.glob("lib/**/*.rb").join(' ') + " | grep '^class ' | grep -v 'class <<' | sed -e 's/\\1/g' | xargs -I {} heckle -f"
+#	sh "echo cat " + Dir.glob("lib/**/*.rb").join(' ') + " | grep '^class ' | grep -v 'class <<' | sed -e 's/\\1/g' | xargs -I {} heckle -f"
 end
 
 desc "Run code coverage"
