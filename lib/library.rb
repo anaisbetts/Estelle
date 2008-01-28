@@ -80,9 +80,9 @@ class Library < Logger::Application
 			#log DEBUG, 'Reading %s..' % current
 			
 			# First, see if we've already scanned this file before (save some time
-			# and only read the first 256K)
+			# and only read the first 4K)
 			begin	
-				md5sum = Digest::MD5.hexdigest(File.open(current, 'r') {|x| x.read(0x40000)})
+				md5sum = Digest::MD5.hexdigest(File.open(current, 'r') {|x| x.read(0x1000)})
 				if (@tag_info[current] = @md5_index[md5sum])
 					#log DEBUG, "Cache hit!"
 					next
@@ -220,8 +220,11 @@ class Library < Logger::Application
 				when :symlink
 					 do_it.link x[0], x[1], x[2]
 				end
-			rescue
-				log ERROR, _("Failure processing %s") % x[0]
+			rescue Errno::EEXIST
+				log WARN, _("Duplicate file: %s") % x[0]
+				next
+			rescue 
+				log ERROR, _("Failure processing %s: %s") % [x[0], $!]
 				next
 			end
 
