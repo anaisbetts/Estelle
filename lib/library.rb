@@ -234,7 +234,8 @@ class Library < Logger::Application
 		paths.each do |x|
 			log DEBUG, "Trying to load #{x}"
 			Pathname.new(x).each_entry do |y| 
-				file = File.join(x,y) 
+				# Canonicalize path - otherwise we'll confuse 'require'
+				file = Pathname.new(File.join(x,y)).realpath
 				require file if y.extname == '.rb'
 			end
 		end
